@@ -5,13 +5,12 @@
   "description": "Configura el cache DNS, servidor DNS, cliente NTP, y utiliza herramientas de diagnostico como ping, traceroute y torch.",
   "mode": "containerlab",
   "difficulty": "medium",
-  "estimatedMinutes": 35,
   "routers": [
     {
       "name": "r1",
-      "winboxPort": 18001,
-      "sshPort": 12001,
-      "webfigPort": 8081,
+      "winboxPort": 43291,
+      "sshPort": 43221,
+      "webfigPort": 43281,
       "username": "admin",
       "password": "admin"
     }

@@ -2,16 +2,16 @@
 
 La solucion se basa en habilitar los servicios de acceso y verificar conectividad.
 
-1. Conecta por WinBox usando la IP o el puerto local mapeado `18001`.
+1. Conecta por WinBox usando el host del panel de acceso y el puerto mapeado `43291`.
 2. Conecta por SSH:
 ```
-ssh -p 12001 admin@localhost
+ssh -p 43221 admin@<host-del-panel>
 ```
 3. Cambia la contrasena dentro del router:
 ```
 /user set admin password=TuNuevaPass
 ```
-4. Accede a WebFig en `http://localhost:8081`.
+4. Accede a WebFig en `http://<host-del-panel>:43281`.
 5. Verifica servicios:
 ```
 /ip service print

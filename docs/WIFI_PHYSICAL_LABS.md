@@ -1,6 +1,8 @@
 # Wi-Fi and Physical Labs Plan
 
-## Wi-Fi Labs
+## Wi-Fi Labs in MTCNA
+
+Wi-Fi is part of the MTCNA track in this platform. The dedicated Wi-Fi notes only explain how the labs are delivered, not a separate certification track.
 
 CHR (Cloud Hosted Router) does not emulate real wireless. Because of this, Wi-Fi labs have specific rules.
 

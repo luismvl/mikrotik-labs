@@ -4,7 +4,6 @@
   "track": "MTCRE",
   "mode": "containerlab",
   "difficulty": "hard",
-  "estimatedMinutes": 75,
   "topics": [
     "routing",
     "ecmp"
@@ -32,25 +31,25 @@
   "routers": [
     {
       "name": "r1",
-      "winboxPort": 18001,
-      "sshPort": 12001,
-      "webfigPort": 8081,
+      "winboxPort": 43291,
+      "sshPort": 43221,
+      "webfigPort": 43281,
       "username": "admin",
       "password": "admin"
     },
     {
       "name": "r2",
-      "winboxPort": 18002,
-      "sshPort": 12002,
-      "webfigPort": 8082,
+      "winboxPort": 43292,
+      "sshPort": 43222,
+      "webfigPort": 43282,
       "username": "admin",
       "password": "admin"
     },
     {
       "name": "r3",
-      "winboxPort": 18003,
-      "sshPort": 12003,
-      "webfigPort": 8083,
+      "winboxPort": 43293,
+      "sshPort": 43223,
+      "webfigPort": 43283,
       "username": "admin",
       "password": "admin"
     }

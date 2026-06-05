@@ -5,3 +5,8 @@ dist/
 *.tsbuildinfo
 .vscode/
 .idea/
+logs/
+data/
+!data/.gitkeep
+config/platform.env
+labs/*/clab-*/

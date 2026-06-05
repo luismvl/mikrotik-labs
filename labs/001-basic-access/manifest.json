@@ -5,13 +5,12 @@
   "description": "Practica los metodos de acceso inicial a un router MikroTik: WinBox, SSH, WebFig y la consola serial.",
   "mode": "containerlab",
   "difficulty": "easy",
-  "estimatedMinutes": 25,
   "routers": [
     {
       "name": "r1",
-      "winboxPort": 18001,
-      "sshPort": 12001,
-      "webfigPort": 8081,
+      "winboxPort": 43291,
+      "sshPort": 43221,
+      "webfigPort": 43281,
       "username": "admin",
       "password": "admin"
     }
@@ -33,7 +32,7 @@
     }
   ],
   "objectives": [
-    "Conectar al router mediante WinBox usando la direccion MAC",
+    "Conectar al router mediante WinBox usando el host del panel de acceso y el puerto publicado",
     "Conectar por SSH y cambiar la contrasena del usuario admin",
     "Acceder a WebFig desde el navegador",
     "Verificar que los servicios SSH, Telnet, WinBox y Web estan habilitados"

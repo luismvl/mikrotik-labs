@@ -5,13 +5,12 @@
   "description": "Configura un bridge en RouterOS, agrega puertos Ethernet y verifica el aprendizaje de direcciones MAC entre dispositivos conectados.",
   "mode": "containerlab",
   "difficulty": "medium",
-  "estimatedMinutes": 45,
   "routers": [
     {
       "name": "r1",
-      "winboxPort": 18001,
-      "sshPort": 12001,
-      "webfigPort": 8081,
+      "winboxPort": 43291,
+      "sshPort": 43221,
+      "webfigPort": 43281,
       "username": "admin",
       "password": "admin"
     }

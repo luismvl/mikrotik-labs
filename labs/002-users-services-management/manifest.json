@@ -5,13 +5,12 @@
   "description": "Administra usuarios locales y servicios de acceso en RouterOS para endurecer la seguridad basica.",
   "mode": "containerlab",
   "difficulty": "easy",
-  "estimatedMinutes": 30,
   "routers": [
     {
       "name": "r1",
-      "winboxPort": 18001,
-      "sshPort": 12001,
-      "webfigPort": 8081,
+      "winboxPort": 43291,
+      "sshPort": 43221,
+      "webfigPort": 43281,
       "username": "admin",
       "password": "admin"
     }

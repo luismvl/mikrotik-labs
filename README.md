@@ -50,6 +50,14 @@ Preparacion completa para MTCNA y MTCRE, organizada en dos tracks:
 | `scripts/cleanup-labs.sh` | Destroy active/known labs and remove project-specific Docker resources (no global prune) |
 
 See `docs/VPS_FRP.md` for the full FRP/local-vs-VPS workflow.
+See `docs/ROUTEROS_CHR_IMAGE.md` for the local RouterOS CHR image required by Containerlab.
+
+Default public access through the VPS uses high ports:
+
+- Platform: `http://<VPS_PUBLIC_IP>:43180`
+- r1 WinBox/SSH/WebFig: `43291`, `43221`, `43281`
+- r2 WinBox/SSH/WebFig: `43292`, `43222`, `43282`
+- r3 WinBox/SSH/WebFig: `43293`, `43223`, `43283`
 
 ## Workspace
 

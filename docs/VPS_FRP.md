@@ -24,8 +24,9 @@ Use this when you run the platform on your own Ubuntu/Debian PC or server and wa
 
 1. On the VPS, run `scripts/install-vps.sh` to set up `frps` and a systemd service.
 2. On the local PC, run `scripts/install-local.sh` to set up Docker, Containerlab, and `frpc`.
-3. Copy `config/frpc.toml.example` to `config/frpc.toml` and fill in `serverAddr`, `token`, and `customDomains`.
+3. Copy `config/frpc.toml.example` to `config/frpc.toml` and fill in `serverAddr` and `token`.
 4. Start the platform with `scripts/start-platform.sh`; it will auto-start `frpc` if the config exists.
+5. Open the platform from outside with `http://<VPS_PUBLIC_IP>:43180`.
 
 ## Plan B: run everything on the VPS
 
@@ -39,16 +40,21 @@ Use this when you do not have a local Linux machine with Docker/Containerlab.
 ## FRP Server (VPS)
 
 - Runs `frps` with a static token via systemd (`frps.service`).
-- Default control port: `7000`.
-- Default vhost HTTP port: `8080`.
-- Exposes ports for WinBox (8291), SSH (22), and WebFig (80/443) via proxy entries.
-- Uses subdomain or port-range allocation per lab device.
+- Default control port: `43700`.
+- Exposes the frontend and RouterOS access with high TCP ports.
+- Public defaults:
+  - Frontend: `43180`
+  - r1 WinBox/SSH/WebFig: `43291`, `43221`, `43281`
+  - r2 WinBox/SSH/WebFig: `43292`, `43222`, `43282`
+  - r3 WinBox/SSH/WebFig: `43293`, `43223`, `43283`
+- The frontend derives the public host from the browser URL, so labs do not hardcode the VPS IP.
 
 ## FRP Client
 
 - Runs `frpc` on a small Linux host or the MikroTik device itself (if RouterOS supports).
 - Connects to the VPS FRP server.
-- Forwards local MikroTik services (and the local platform frontend/backend) to the VPS.
+- Forwards the local frontend and active lab RouterOS service ports to the VPS.
+- The backend stays local behind Vite's `/api` proxy.
 - The `scripts/start-platform.sh` script auto-starts `frpc` when `config/frpc.toml` is present.
 
 ## Security

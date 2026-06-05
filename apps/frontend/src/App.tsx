@@ -1,19 +1,22 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Monitor } from 'lucide-react';
+import { Monitor, RotateCcw } from 'lucide-react';
 import type { LabListItem, LabDetail, PlatformStatus } from './types';
 import {
+  ApiError,
   fetchLabs,
   fetchLabDetail,
   startLab,
   stopLab,
+  resetLab,
   validateLab,
   completeManualLab,
   fetchPlatformStatus,
 } from './api';
 import { LabList } from './components/LabList';
-import { LabDetailPanel } from './components/LabDetail';
+import { LabDetailPanel, type Notice } from './components/LabDetail';
 
-type TrackFilter = 'all' | 'MTCNA' | 'MTCRE' | 'wifi-physical';
+type TrackFilter = 'all' | 'MTCNA' | 'MTCRE' | 'wifi-mtcna';
+type LabAction = 'start' | 'stop' | 'reset' | null;
 
 export default function App() {
   const [labs, setLabs] = useState<LabListItem[]>([]);
@@ -24,8 +27,9 @@ export default function App() {
   const [detailLoading, setDetailLoading] = useState(false);
   const [platformStatus, setPlatformStatus] = useState<PlatformStatus | null>(null);
   const [validating, setValidating] = useState(false);
-  const [generalMessage, setGeneralMessage] = useState<string | null>(null);
-  const [validationMessage, setValidationMessage] = useState<string | null>(null);
+  const [labAction, setLabAction] = useState<LabAction>(null);
+  const [generalMessage, setGeneralMessage] = useState<Notice | null>(null);
+  const [validationMessage, setValidationMessage] = useState<Notice | null>(null);
 
   const loadLabs = useCallback(async () => {
     setLoading(true);
@@ -74,17 +78,55 @@ export default function App() {
     if (filter === 'all') return true;
     if (filter === 'MTCNA') return lab.track === 'MTCNA';
     if (filter === 'MTCRE') return lab.track === 'MTCRE';
-    if (filter === 'wifi-physical') return lab.mode.startsWith('physical') || lab.hardware?.required === true;
+    if (filter === 'wifi-mtcna') {
+      return (
+        lab.track === 'MTCNA' &&
+        (lab.topics.some((topic) => ['wireless', 'wifi', 'wi-fi'].includes(topic.toLowerCase())) ||
+          lab.mode.startsWith('physical') ||
+          lab.hardware?.required === true)
+      );
+    }
     return true;
   });
 
   const selectedLab = labs.find((l) => l.id === selectedId) || null;
+  const activeLabId = platformStatus?.activeLab ?? null;
+  const activeLabTitle = activeLabId
+    ? (labs.find((l) => l.id === activeLabId)?.title ?? activeLabId)
+    : null;
+  const effectiveActiveLabId = labAction === 'start' && selectedId ? selectedId : activeLabId;
+
+  function buildErrorNotice(err: unknown): Notice {
+    if (err instanceof ApiError && err.activeLab) {
+      const activeTitle = err.activeLab.title;
+      const activeId = err.activeLab.id;
+      const parts = err.message.split(`"${activeTitle}"`);
+      return {
+        kind: 'error',
+        text: (
+          <>
+            {parts[0]}
+            <button
+              className="inline-link"
+              onClick={() => setSelectedId(activeId)}
+            >
+              {activeTitle}
+            </button>
+            {parts.length > 1 ? parts.slice(1).join(`"${activeTitle}"`) : ''}
+          </>
+        ),
+      };
+    }
+    return { text: err instanceof Error ? err.message : String(err), kind: 'error' };
+  }
 
   async function handleStart() {
     if (!selectedId) return;
+    setLabAction('start');
+    setGeneralMessage({ text: 'Iniciando laboratorio...', kind: 'info' });
     try {
       const res = await startLab(selectedId);
-      setGeneralMessage(res.message);
+      setGeneralMessage({ text: res.message, kind: 'success' });
       await loadLabs();
       if (selectedId) {
         const d = await fetchLabDetail(selectedId);
@@ -92,15 +134,19 @@ export default function App() {
       }
       await loadPlatformStatus();
     } catch (err) {
-      setGeneralMessage(err instanceof Error ? err.message : String(err));
+      setGeneralMessage(buildErrorNotice(err));
+    } finally {
+      setLabAction(null);
     }
   }
 
   async function handleStop() {
     if (!selectedId) return;
+    setLabAction('stop');
+    setGeneralMessage({ text: 'Deteniendo laboratorio...', kind: 'info' });
     try {
       const res = await stopLab(selectedId);
-      setGeneralMessage(res.message);
+      setGeneralMessage({ text: res.message, kind: 'success' });
       await loadLabs();
       if (selectedId) {
         const d = await fetchLabDetail(selectedId);
@@ -108,8 +154,35 @@ export default function App() {
       }
       await loadPlatformStatus();
     } catch (err) {
-      setGeneralMessage(err instanceof Error ? err.message : String(err));
+      setGeneralMessage({ text: err instanceof Error ? err.message : String(err), kind: 'error' });
+    } finally {
+      setLabAction(null);
     }
+  }
+
+  async function handleResetLab(id: string) {
+    const confirmed = window.confirm('Resetear este laboratorio destruye el estado actual y lo inicia de nuevo.');
+    if (!confirmed) return;
+    setLabAction('reset');
+    setSelectedId(id);
+    setGeneralMessage({ text: 'Reseteando laboratorio...', kind: 'info' });
+    try {
+      const res = await resetLab(id);
+      setGeneralMessage({ text: res.message, kind: 'success' });
+      await loadLabs();
+      const d = await fetchLabDetail(id);
+      setDetail(d);
+      await loadPlatformStatus();
+    } catch (err) {
+      setGeneralMessage(buildErrorNotice(err));
+    } finally {
+      setLabAction(null);
+    }
+  }
+
+  async function handleReset() {
+    if (!selectedId) return;
+    await handleResetLab(selectedId);
   }
 
   async function handleValidate() {
@@ -118,10 +191,10 @@ export default function App() {
     setValidationMessage(null);
     try {
       const res = await validateLab(selectedId);
-      setValidationMessage(res.message);
+      setValidationMessage({ text: res.message, kind: res.success ? 'success' : 'error' });
       await loadLabs();
     } catch (err) {
-      setValidationMessage(err instanceof Error ? err.message : String(err));
+      setValidationMessage({ text: err instanceof Error ? err.message : String(err), kind: 'error' });
     } finally {
       setValidating(false);
     }
@@ -133,11 +206,11 @@ export default function App() {
     setValidationMessage(null);
     try {
       const res = await completeManualLab(selectedId);
-      setValidationMessage(res.message);
+      setValidationMessage({ text: res.message, kind: res.success ? 'success' : 'error' });
       await loadLabs();
       await loadPlatformStatus();
     } catch (err) {
-      setValidationMessage(err instanceof Error ? err.message : String(err));
+      setValidationMessage({ text: err instanceof Error ? err.message : String(err), kind: 'error' });
     } finally {
       setValidating(false);
     }
@@ -166,20 +239,36 @@ export default function App() {
             <span className={`status-dot ${platformStatus?.frpcAvailable ? 'ok' : 'err'}`} />
             frpc
           </span>
-          {platformStatus?.activeLab && (
-            <span style={{ color: '#93c5fd' }}>Activo: {platformStatus.activeLab}</span>
+          {activeLabId && (
+            <span className="active-lab-actions">
+              <button
+                onClick={() => setSelectedId(activeLabId)}
+                className="active-lab-link"
+              >
+                Activo: {activeLabTitle}
+              </button>
+              <button
+                onClick={() => handleResetLab(activeLabId)}
+                className="topbar-reset-btn"
+                disabled={labAction !== null}
+                title="Resetear lab activo"
+              >
+                <RotateCcw size={13} />
+                {labAction === 'reset' ? 'Reseteando...' : 'Resetear'}
+              </button>
+            </span>
           )}
         </div>
       </header>
 
       <div className="track-tabs">
-        {(['all', 'MTCNA', 'MTCRE', 'wifi-physical'] as TrackFilter[]).map((f) => (
+        {(['all', 'MTCNA', 'MTCRE', 'wifi-mtcna'] as TrackFilter[]).map((f) => (
           <button
             key={f}
             className={`tab-btn ${filter === f ? 'active' : ''}`}
             onClick={() => setFilter(f)}
           >
-            {f === 'wifi-physical' ? 'Wi-Fi / Fisico' : f === 'all' ? 'Todos' : f}
+            {f === 'wifi-mtcna' ? 'Wi-Fi MTCNA' : f === 'all' ? 'Todos' : f}
           </button>
         ))}
       </div>
@@ -200,6 +289,9 @@ export default function App() {
               detail={detail}
               onStart={handleStart}
               onStop={handleStop}
+              onReset={handleReset}
+              isActiveLab={selectedId === effectiveActiveLabId}
+              labAction={labAction}
               onValidate={handleValidate}
               onCompleteManual={handleCompleteManual}
               validating={validating}

@@ -5,7 +5,6 @@
   "description": "Evalua tus conocimientos sobre bridges y VLANs en RouterOS mediante un cuestionario de troubleshooting. Identifica errores conceptuales comunes en la configuracion de capa 2.",
   "mode": "quiz",
   "difficulty": "hard",
-  "estimatedMinutes": 60,
   "resources": [
     {
       "type": "official-docs",

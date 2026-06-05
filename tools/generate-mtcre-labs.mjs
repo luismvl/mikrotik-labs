@@ -81,9 +81,9 @@ function docsFor(tags) {
 function routers(mode) {
   if (mode === "quiz") return undefined;
   return [
-    { name: "r1", winboxPort: 18001, sshPort: 12001, webfigPort: 8081, username: "admin", password: "admin" },
-    { name: "r2", winboxPort: 18002, sshPort: 12002, webfigPort: 8082, username: "admin", password: "admin" },
-    { name: "r3", winboxPort: 18003, sshPort: 12003, webfigPort: 8083, username: "admin", password: "admin" },
+    { name: "r1", winboxPort: 43291, sshPort: 43221, webfigPort: 43281, username: "admin", password: "admin" },
+    { name: "r2", winboxPort: 43292, sshPort: 43222, webfigPort: 43282, username: "admin", password: "admin" },
+    { name: "r3", winboxPort: 43293, sshPort: 43223, webfigPort: 43283, username: "admin", password: "admin" },
   ];
 }
 
@@ -96,7 +96,6 @@ function manifest(lab) {
     track: "MTCRE",
     mode: lab.mode,
     difficulty: lab.difficulty,
-    estimatedMinutes: lab.minutes,
     topics,
     resources: [
       ...official,
@@ -117,6 +116,11 @@ function manifest(lab) {
 function topology(lab) {
   return `name: ${lab.id}
 
+mgmt:
+  network: mikrotik-labs-mgmt
+  ipv4-subnet: auto
+  ipv6-subnet: auto
+
 topology:
   nodes:
     r1:
@@ -124,25 +128,25 @@ topology:
       image: vrnetlab/mikrotik_routeros:7.16
       startup-config: startup/r1.rsc
       ports:
-        - 18001:8291
-        - 12001:22
-        - 8081:80
+        - 43291:8291
+        - 43221:22
+        - 43281:80
     r2:
       kind: mikrotik_ros
       image: vrnetlab/mikrotik_routeros:7.16
       startup-config: startup/r2.rsc
       ports:
-        - 18002:8291
-        - 12002:22
-        - 8082:80
+        - 43292:8291
+        - 43222:22
+        - 43282:80
     r3:
       kind: mikrotik_ros
       image: vrnetlab/mikrotik_routeros:7.16
       startup-config: startup/r3.rsc
       ports:
-        - 18003:8291
-        - 12003:22
-        - 8083:80
+        - 43293:8291
+        - 43223:22
+        - 43283:80
   links:
     - endpoints: ["r1:ether2", "r2:ether2"]
     - endpoints: ["r2:ether3", "r3:ether2"]
@@ -202,7 +206,7 @@ if (passed) {
       timeout: 30000,
     });
     const data = JSON.parse(raw);
-    const containers = Array.isArray(data?.containers) ? data.containers : [];
+    const containers = Array.isArray(data?.containers) ? data.containers : Object.values(data ?? {}).flatMap((value) => Array.isArray(value) ? value : []);
     const running = containers.filter((node) => String(node.state || "").toLowerCase().includes("running"));
     add("expected nodes are running", running.length >= ${expectedNodes}, \`Expected at least ${expectedNodes} running nodes, found \${running.length}\`);
   } catch (error) {

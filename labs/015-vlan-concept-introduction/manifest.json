@@ -5,7 +5,6 @@
   "description": "Comprende los conceptos fundamentales de VLAN, etiquetado de tramas, puertos trunk y access, y el uso de interfaces VLAN en RouterOS.",
   "mode": "quiz",
   "difficulty": "easy",
-  "estimatedMinutes": 30,
   "resources": [
     {
       "type": "official-docs",

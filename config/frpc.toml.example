@@ -3,32 +3,79 @@
 # FRP v0.6x TOML syntax.
 
 serverAddr = "YOUR_VPS_IP_OR_DOMAIN"
-serverPort = 7000
-token = "YOUR_STRONG_TOKEN_HERE"
+serverPort = 43700
+auth.token = "YOUR_STRONG_TOKEN_HERE"
 
-# Optional: keepalive for stability
-tcpMuxKeepaliveInterval = 30
-
-# Proxy the frontend (Vite dev server) so it is reachable remotely.
+# Proxy the frontend (Vite dev server) so it is reachable remotely at:
+#   http://YOUR_VPS_IP_OR_DOMAIN:43180
 [[proxies]]
 name = "frontend"
-type = "http"
+type = "tcp"
 localIP = "127.0.0.1"
-localPort = 5173
-customDomains = ["frontend.YOUR_DOMAIN"]
+localPort = 43180
+remotePort = 43180
 
-# Proxy the backend API so it is reachable remotely.
+# RouterOS access ports for the currently active lab. Only one lab should run
+# at a time, so all labs can reuse the same public ports.
 [[proxies]]
-name = "backend"
-type = "http"
+name = "r1-winbox"
+type = "tcp"
 localIP = "127.0.0.1"
-localPort = 3001
-customDomains = ["backend.YOUR_DOMAIN"]
+localPort = 43291
+remotePort = 43291
 
-# Example: proxy WinBox to a local MikroTik device (optional).
-# [[proxies]]
-# name = "winbox"
-# type = "tcp"
-# localIP = "192.168.88.1"
-# localPort = 8291
-# remotePort = 18291
+[[proxies]]
+name = "r1-ssh"
+type = "tcp"
+localIP = "127.0.0.1"
+localPort = 43221
+remotePort = 43221
+
+[[proxies]]
+name = "r1-webfig"
+type = "tcp"
+localIP = "127.0.0.1"
+localPort = 43281
+remotePort = 43281
+
+[[proxies]]
+name = "r2-winbox"
+type = "tcp"
+localIP = "127.0.0.1"
+localPort = 43292
+remotePort = 43292
+
+[[proxies]]
+name = "r2-ssh"
+type = "tcp"
+localIP = "127.0.0.1"
+localPort = 43222
+remotePort = 43222
+
+[[proxies]]
+name = "r2-webfig"
+type = "tcp"
+localIP = "127.0.0.1"
+localPort = 43282
+remotePort = 43282
+
+[[proxies]]
+name = "r3-winbox"
+type = "tcp"
+localIP = "127.0.0.1"
+localPort = 43293
+remotePort = 43293
+
+[[proxies]]
+name = "r3-ssh"
+type = "tcp"
+localIP = "127.0.0.1"
+localPort = 43223
+remotePort = 43223
+
+[[proxies]]
+name = "r3-webfig"
+type = "tcp"
+localIP = "127.0.0.1"
+localPort = 43283
+remotePort = 43283

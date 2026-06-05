@@ -5,13 +5,12 @@
   "description": "Aplica reglas de firewall en la cadena input para proteger el propio router: filtrar accesos, limitar puertos y gestionar conexiones.",
   "mode": "containerlab",
   "difficulty": "medium",
-  "estimatedMinutes": 45,
   "routers": [
     {
       "name": "r1",
-      "winboxPort": 18001,
-      "sshPort": 12001,
-      "webfigPort": 8081,
+      "winboxPort": 43291,
+      "sshPort": 43221,
+      "webfigPort": 43281,
       "username": "admin",
       "password": "admin"
     }

@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import ReactMarkdown from 'react-markdown';
 import {
   Play,
   Square,
+  RotateCcw,
   CheckCircle,
   ExternalLink,
   Eye,
@@ -13,16 +14,29 @@ import {
 import type { LabDetail, LabListItem } from '../types';
 import { TrackBadge, DifficultyBadge, StatusBadge } from './StatusBadge';
 
+export type Notice = {
+  text: ReactNode;
+  kind: 'success' | 'error' | 'info';
+};
+
 interface LabDetailProps {
   lab: LabListItem;
   detail: LabDetail;
   onStart: () => void;
   onStop: () => void;
+  onReset: () => void;
+  isActiveLab: boolean;
+  labAction: 'start' | 'stop' | 'reset' | null;
   onValidate: () => void;
   onCompleteManual: () => void;
   validating: boolean;
-  generalMessage: string | null;
-  validationMessage: string | null;
+  generalMessage: Notice | null;
+  validationMessage: Notice | null;
+}
+
+function getAccessHost() {
+  if (typeof window === 'undefined') return '127.0.0.1';
+  return window.location.hostname || '127.0.0.1';
 }
 
 function AccessPanel({
@@ -33,6 +47,7 @@ function AccessPanel({
   if (!routers || routers.length === 0) {
     return <p className="text-secondary">No hay acceso de router configurado.</p>;
   }
+  const host = getAccessHost();
   return (
     <table className="access-table">
       <thead>
@@ -49,9 +64,18 @@ function AccessPanel({
         {routers.map((r) => (
           <tr key={r.name}>
             <td>{r.name}</td>
-            <td>{r.winboxPort ?? '-'}</td>
-            <td>{r.sshPort ?? '-'}</td>
-            <td>{r.webfigPort ?? '-'}</td>
+            <td>{r.winboxPort ? `${host}:${r.winboxPort}` : '-'}</td>
+            <td>{r.sshPort ? `ssh ${r.username}@${host} -p ${r.sshPort}` : '-'}</td>
+            <td>
+              {r.webfigPort ? (
+                <a href={`http://${host}:${r.webfigPort}`} target="_blank" rel="noreferrer">
+                  {host}:{r.webfigPort}
+                  <ExternalLink size={12} />
+                </a>
+              ) : (
+                '-'
+              )}
+            </td>
             <td>{r.username}</td>
             <td>{r.password}</td>
           </tr>
@@ -62,8 +86,70 @@ function AccessPanel({
 }
 
 function DiagramPanel({ diagram }: { diagram?: string }) {
+  const [svg, setSvg] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const diagramId = useMemo(() => `diagram-${Math.random().toString(36).slice(2)}`, [diagram]);
+
+  useEffect(() => {
+    if (!diagram) return;
+    let cancelled = false;
+    setSvg(null);
+    setError(null);
+    import('mermaid')
+      .then(({ default: mermaid }) => {
+        mermaid.initialize({
+          startOnLoad: false,
+          securityLevel: 'strict',
+          theme: 'base',
+          flowchart: {
+            curve: 'basis',
+            padding: 16,
+            nodeSpacing: 60,
+            rankSpacing: 70,
+            htmlLabels: false,
+          },
+          themeVariables: {
+            fontFamily: 'Inter, system-ui, sans-serif',
+            primaryColor: '#eaf2ff',
+            primaryTextColor: '#102033',
+            primaryBorderColor: '#2f6fed',
+            lineColor: '#667085',
+            secondaryColor: '#eefdf3',
+            secondaryBorderColor: '#22a06b',
+            tertiaryColor: '#fff7ed',
+            tertiaryBorderColor: '#f59e0b',
+            noteBkgColor: '#fff7ed',
+            noteBorderColor: '#f59e0b',
+            clusterBkg: '#f8fafc',
+            clusterBorder: '#cbd5e1',
+          },
+        });
+        return mermaid.render(diagramId, diagram);
+      })
+      .then(({ svg: renderedSvg }) => {
+        if (!cancelled) setSvg(renderedSvg);
+      })
+      .catch((err) => {
+        if (!cancelled) setError(err instanceof Error ? err.message : String(err));
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [diagram, diagramId]);
+
   if (!diagram) return <p className="text-secondary">No hay diagrama disponible.</p>;
-  return <pre className="diagram-pre">{diagram}</pre>;
+  if (svg) {
+    return <div className="diagram-rendered" dangerouslySetInnerHTML={{ __html: svg }} />;
+  }
+  if (error) {
+    return (
+      <div>
+        <p className="text-secondary">No se pudo renderizar el diagrama Mermaid.</p>
+        <pre className="diagram-pre">{diagram}</pre>
+      </div>
+    );
+  }
+  return <p className="text-secondary">Renderizando diagrama...</p>;
 }
 
 function ObjectivesPanel({ objectives }: { objectives: string[] }) {
@@ -138,7 +224,7 @@ function CollapsibleSection({
   defaultOpen = false,
 }: {
   title: string;
-  children: React.ReactNode;
+  children: ReactNode;
   defaultOpen?: boolean;
 }) {
   const [open, setOpen] = useState(defaultOpen);
@@ -164,7 +250,7 @@ function ValidationSection({
   onValidate: () => void;
   onCompleteManual: () => void;
   validating: boolean;
-  validationMessage: string | null;
+  validationMessage: Notice | null;
 }) {
   const isManual = lab.validation.type === 'manual' || lab.mode === 'physical-manual';
 
@@ -185,16 +271,8 @@ function ValidationSection({
         )}
       </div>
       {validationMessage && (
-        <div
-          className={`validation-result ${
-            validationMessage.toLowerCase().includes('passed') ||
-            validationMessage.toLowerCase().includes('success') ||
-            validationMessage.toLowerCase().includes('complete')
-              ? 'success'
-              : 'error'
-          }`}
-        >
-          {validationMessage}
+        <div className={`validation-result ${validationMessage.kind}`}>
+          {validationMessage.text}
         </div>
       )}
     </div>
@@ -206,6 +284,9 @@ export function LabDetailPanel({
   detail,
   onStart,
   onStop,
+  onReset,
+  isActiveLab,
+  labAction,
   onValidate,
   onCompleteManual,
   validating,
@@ -218,30 +299,29 @@ export function LabDetailPanel({
     <div className="detail-panel">
       <div className="detail-header" style={{ justifyContent: 'flex-end' }}>
         <div className="toolbar">
-          {lab.status === 'running' ? (
-            <button className="btn btn-danger" onClick={onStop}>
-              <Square size={14} />
-              Detener
-            </button>
+          {isActiveLab ? (
+            <>
+              <button className="btn" onClick={onReset} disabled={labAction !== null}>
+                <RotateCcw size={14} className={labAction === 'reset' ? 'spin' : ''} />
+                {labAction === 'reset' ? 'Reseteando...' : 'Resetear'}
+              </button>
+              <button className="btn btn-danger" onClick={onStop} disabled={labAction !== null}>
+                <Square size={14} />
+                {labAction === 'stop' ? 'Deteniendo...' : 'Detener'}
+              </button>
+            </>
           ) : (
-            <button className="btn btn-primary" onClick={onStart}>
+            <button className="btn btn-primary" onClick={onStart} disabled={labAction !== null}>
               <Play size={14} />
-              Iniciar
+              {labAction === 'start' ? 'Iniciando...' : 'Iniciar'}
             </button>
           )}
         </div>
       </div>
 
       {generalMessage && (
-        <div
-          className={`validation-result ${
-            generalMessage.toLowerCase().includes('success') || generalMessage.toLowerCase().includes('started') || generalMessage.toLowerCase().includes('stopped')
-              ? 'success'
-              : 'error'
-          }`}
-          style={{ marginBottom: 16 }}
-        >
-          {generalMessage}
+        <div className={`validation-result ${generalMessage.kind}`} style={{ marginBottom: 16 }}>
+          {generalMessage.text}
         </div>
       )}
 

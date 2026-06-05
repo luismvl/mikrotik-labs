@@ -1,5 +1,10 @@
 name: 005-arp-leases-neighbor-discovery
 
+mgmt:
+  network: mikrotik-labs-mgmt
+  ipv4-subnet: auto
+  ipv6-subnet: auto
+
 topology:
   nodes:
     r1:
@@ -7,9 +12,9 @@ topology:
       image: vrnetlab/mikrotik_routeros:7.16
       startup-config: startup/r1.rsc
       ports:
-        - 18001:8291
-        - 12001:22
-        - 8081:80
+        - 43291:8291
+        - 43221:22
+        - 43281:80
     client:
       kind: linux
       image: alpine:latest

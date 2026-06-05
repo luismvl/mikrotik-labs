@@ -1,5 +1,10 @@
 name: 014-bridge-troubleshooting
 
+mgmt:
+  network: mikrotik-labs-mgmt
+  ipv4-subnet: auto
+  ipv6-subnet: auto
+
 topology:
   nodes:
     r1:
@@ -7,16 +12,16 @@ topology:
       image: vrnetlab/mikrotik_routeros:7.16
       startup-config: startup/r1.rsc
       ports:
-        - 18001:8291
-        - 12001:22
-        - 8081:80
+        - 43291:8291
+        - 43221:22
+        - 43281:80
     r2:
       kind: mikrotik_ros
       image: vrnetlab/mikrotik_routeros:7.16
       startup-config: startup/r2.rsc
       ports:
-        - 18002:8291
-        - 12002:22
-        - 8082:80
+        - 43292:8291
+        - 43222:22
+        - 43282:80
   links:
     - endpoints: ["r1:ether2", "r2:ether2"]

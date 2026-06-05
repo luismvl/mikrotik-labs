@@ -39,7 +39,6 @@ export interface LabManifest {
   track: 'MTCNA' | 'MTCRE';
   mode: LabMode;
   difficulty: Difficulty;
-  estimatedMinutes: number;
   topics: string[];
   resources: Resource[];
   objectives: string[];
@@ -65,11 +64,18 @@ export interface LabDetail {
 export interface StartLabResult {
   success: boolean;
   message: string;
+  activeLab?: ActiveLabRef;
 }
 
 export interface StopLabResult {
   success: boolean;
   message: string;
+}
+
+export interface ResetLabResult {
+  success: boolean;
+  message: string;
+  activeLab?: ActiveLabRef;
 }
 
 export interface ValidateLabResult {
@@ -93,4 +99,9 @@ export interface PlatformStatus {
 export interface ProgressData {
   labs: Record<string, { status: LabStatus }>;
   activeLab: string | null;
+}
+
+export interface ActiveLabRef {
+  id: string;
+  title: string;
 }

@@ -40,8 +40,6 @@ export function LabList({ labs, selectedId, onSelect, onRefresh, loading }: LabL
             <div className="lab-row-meta">
               <TrackBadge track={lab.track} />
               <DifficultyBadge difficulty={lab.difficulty} />
-              <span className="meta-pill">{lab.estimatedMinutes} min</span>
-              <span className="meta-pill">{lab.mode}</span>
             </div>
           </div>
         ))}

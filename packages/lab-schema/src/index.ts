@@ -78,7 +78,6 @@ export const LabManifest = z.object({
   track: z.enum(["MTCNA", "MTCRE"]),
   mode: LabMode,
   difficulty: Difficulty,
-  estimatedMinutes: z.number().int().min(1),
   topics: z.array(z.string().min(1)),
   resources: z.array(Resource),
   objectives: z.array(z.string().min(1)),

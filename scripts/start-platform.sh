@@ -14,6 +14,13 @@ cd "${REPO_ROOT}"
 log() { echo "[start-platform] $*"; }
 warn() { echo "[start-platform] WARN: $*" >&2; }
 
+if [ -f "${REPO_ROOT}/config/platform.env" ]; then
+  # shellcheck disable=SC1091
+  set -a
+  . "${REPO_ROOT}/config/platform.env"
+  set +a
+fi
+
 # ------------------------------------------------------------------
 # Preconditions
 # ------------------------------------------------------------------
@@ -35,8 +42,10 @@ mkdir -p "${REPO_ROOT}/data/pids"
 
 PID_DIR="${REPO_ROOT}/data/pids"
 LOG_DIR="${REPO_ROOT}/logs"
+BACKEND_HOST="${BACKEND_HOST:-127.0.0.1}"
+BACKEND_PORT="${BACKEND_PORT:-43181}"
 FRONTEND_HOST="${FRONTEND_HOST:-0.0.0.0}"
-FRONTEND_PORT="${FRONTEND_PORT:-5173}"
+FRONTEND_PORT="${FRONTEND_PORT:-43180}"
 
 # ------------------------------------------------------------------
 # Helper: start background process with nohup
@@ -64,12 +73,12 @@ start_bg() {
 }
 
 # ------------------------------------------------------------------
-# Backend dev (default 127.0.0.1:3001)
+# Backend dev (default 127.0.0.1:43181)
 # ------------------------------------------------------------------
-start_bg "backend" pnpm --filter @mikrotik-labs/backend dev
+start_bg "backend" env HOST="${BACKEND_HOST}" PORT="${BACKEND_PORT}" pnpm --filter @mikrotik-labs/backend dev
 
 # ------------------------------------------------------------------
-# Frontend dev (default 0.0.0.0:5173 via Vite)
+# Frontend dev (default 0.0.0.0:43180 via Vite)
 # ------------------------------------------------------------------
 start_bg "frontend" pnpm --filter @mikrotik-labs/frontend exec vite --host "${FRONTEND_HOST}" --port "${FRONTEND_PORT}"
 
@@ -79,7 +88,9 @@ start_bg "frontend" pnpm --filter @mikrotik-labs/frontend exec vite --host "${FR
 FRPC_BIN="/usr/local/bin/frpc"
 FRPC_CONFIG="${REPO_ROOT}/config/frpc.toml"
 
-if [ -f "${FRPC_CONFIG}" ] && [ -x "${FRPC_BIN}" ]; then
+if [ -f "${FRPC_CONFIG}" ] && grep -Eq 'YOUR_VPS_IP_OR_DOMAIN|YOUR_STRONG_TOKEN_HERE' "${FRPC_CONFIG}"; then
+  warn "config/frpc.toml still has placeholder serverAddr/token; skipping frpc."
+elif [ -f "${FRPC_CONFIG}" ] && [ -x "${FRPC_BIN}" ]; then
   start_bg "frpc" "${FRPC_BIN}" -c "${FRPC_CONFIG}"
 else
   if [ ! -f "${FRPC_CONFIG}" ]; then
@@ -91,9 +102,9 @@ else
 fi
 
 log "Platform started."
-log "  Backend:  http://127.0.0.1:3001"
+log "  Backend:  http://${BACKEND_HOST}:${BACKEND_PORT}"
 log "  Frontend: http://${FRONTEND_HOST}:${FRONTEND_PORT}"
-if [ -f "${FRPC_CONFIG}" ] && [ -x "${FRPC_BIN}" ]; then
+if [ -f "${FRPC_CONFIG}" ] && [ -x "${FRPC_BIN}" ] && ! grep -Eq 'YOUR_VPS_IP_OR_DOMAIN|YOUR_STRONG_TOKEN_HERE' "${FRPC_CONFIG}"; then
   log "  frpc:     running with ${FRPC_CONFIG}"
 fi
 log "Logs: ${LOG_DIR}"

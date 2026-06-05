@@ -1,7 +1,7 @@
 graph LR
     A[r1] -- ether2 --> B[r2]
     A -- ether3 --> B
-    B --> C[/ip firewall filter]
+    B --> C["/ip firewall filter"]
     C --> D[input: drop antes de accept]
     C --> E[forward: drop antes de accept]
     D --> F[ICMP bloqueado]

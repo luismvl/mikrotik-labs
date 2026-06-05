@@ -4,7 +4,7 @@ Este laboratorio introduce los metodos de acceso a un router MikroTik recien enc
 
 # Objetivos
 
-1. Conectar al router mediante WinBox usando la direccion MAC.
+1. Conectar al router mediante WinBox usando el host del panel de acceso y el puerto publicado.
 2. Conectar por SSH y cambiar la contrasena del usuario admin.
 3. Acceder a WebFig desde el navegador.
 4. Verificar que los servicios SSH, Telnet, WinBox y Web estan habilitados.
@@ -12,12 +12,11 @@ Este laboratorio introduce los metodos de acceso a un router MikroTik recien enc
 # Tareas
 
 1. Despliega el laboratorio con containerlab.
-2. Identifica la direccion MAC de la interfaz de r1 usando WinBox (modo Neighbors).
-3. Conectate por WinBox (puerto mapeado 18001 tambien disponible) y verifica la identidad del router.
-4. Abre una sesion SSH a r1 en el puerto 12001 con usuario `admin` y contrasena `admin`.
-5. Cambia la contrasena del usuario `admin` por una segura.
-6. Accede a WebFig en el puerto 8081 y verifica que puedes ver el menu principal.
-7. Revisa los servicios activos desde la terminal con `/ip service print`.
+2. Conectate por WinBox usando el host que muestra el panel de acceso y el puerto mapeado `43291`.
+3. Abre una sesion SSH a r1 en el puerto `43221` con usuario `admin` y contrasena `admin`.
+4. Cambia la contrasena del usuario `admin` por una segura.
+5. Accede a WebFig en el puerto `43281` y verifica que puedes ver el menu principal.
+6. Revisa los servicios activos desde la terminal con `/ip service print`.
 
 # Verificacion esperada
 

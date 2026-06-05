@@ -1,9 +1,8 @@
 # FRP server configuration for VPS
 # Install path: /etc/frp/frps.toml
 
-bindPort = 7000
-vhostHTTPPort = 8080
-token = "CHANGE_ME_TO_A_STRONG_TOKEN"
+bindPort = 43700
+auth.token = "CHANGE_ME_TO_A_STRONG_TOKEN"
 
 # Optional: dashboard (bind to localhost and proxy via nginx if exposing externally).
 # webServer.addr = "127.0.0.1"

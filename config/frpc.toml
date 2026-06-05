@@ -1,34 +1,76 @@
 # FRP client configuration for local PC
-# Copy to config/frpc.toml and fill in your VPS details.
-# FRP v0.6x TOML syntax.
+# Set serverAddr and token before starting frpc.
 
-serverAddr = "YOUR_VPS_IP_OR_DOMAIN"
-serverPort = 7000
-token = "YOUR_STRONG_TOKEN_HERE"
+serverAddr = "72.62.160.9"
+serverPort = 43700
+auth.token = "undefined"
 
-# Optional: keepalive for stability
-tcpMuxKeepaliveInterval = 30
-
-# Proxy the frontend (Vite dev server) so it is reachable remotely.
 [[proxies]]
 name = "frontend"
-type = "http"
+type = "tcp"
 localIP = "127.0.0.1"
-localPort = 5173
-customDomains = ["frontend.YOUR_DOMAIN"]
+localPort = 43180
+remotePort = 43180
 
-# Proxy the backend API so it is reachable remotely.
 [[proxies]]
-name = "backend"
-type = "http"
+name = "r1-winbox"
+type = "tcp"
 localIP = "127.0.0.1"
-localPort = 3001
-customDomains = ["backend.YOUR_DOMAIN"]
+localPort = 43291
+remotePort = 43291
 
-# Example: proxy WinBox to a local MikroTik device (optional).
-# [[proxies]]
-# name = "winbox"
-# type = "tcp"
-# localIP = "192.168.88.1"
-# localPort = 8291
-# remotePort = 18291
+[[proxies]]
+name = "r1-ssh"
+type = "tcp"
+localIP = "127.0.0.1"
+localPort = 43221
+remotePort = 43221
+
+[[proxies]]
+name = "r1-webfig"
+type = "tcp"
+localIP = "127.0.0.1"
+localPort = 43281
+remotePort = 43281
+
+[[proxies]]
+name = "r2-winbox"
+type = "tcp"
+localIP = "127.0.0.1"
+localPort = 43292
+remotePort = 43292
+
+[[proxies]]
+name = "r2-ssh"
+type = "tcp"
+localIP = "127.0.0.1"
+localPort = 43222
+remotePort = 43222
+
+[[proxies]]
+name = "r2-webfig"
+type = "tcp"
+localIP = "127.0.0.1"
+localPort = 43282
+remotePort = 43282
+
+[[proxies]]
+name = "r3-winbox"
+type = "tcp"
+localIP = "127.0.0.1"
+localPort = 43293
+remotePort = 43293
+
+[[proxies]]
+name = "r3-ssh"
+type = "tcp"
+localIP = "127.0.0.1"
+localPort = 43223
+remotePort = 43223
+
+[[proxies]]
+name = "r3-webfig"
+type = "tcp"
+localIP = "127.0.0.1"
+localPort = 43283
+remotePort = 43283

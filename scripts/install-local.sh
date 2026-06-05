@@ -161,6 +161,17 @@ else
   log "config/frpc.toml already exists, leaving untouched."
 fi
 
+if [ ! -f "${REPO_ROOT}/config/platform.env" ]; then
+  if [ -f "${REPO_ROOT}/config/platform.env.example" ]; then
+    cp "${REPO_ROOT}/config/platform.env.example" "${REPO_ROOT}/config/platform.env"
+    log "Created config/platform.env from example."
+  else
+    warn "config/platform.env.example is missing; cannot create config/platform.env."
+  fi
+else
+  log "config/platform.env already exists, leaving untouched."
+fi
+
 log "Local install complete."
 log "Next steps:"
 log "  1. Review config/frpc.toml and set your VPS serverAddr / token."

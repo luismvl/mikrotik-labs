@@ -5,7 +5,6 @@
   "description": "Comprende los conceptos fundamentales de redes inalambricas en RouterOS: bandas, modos, seguridad y el menu /interface wireless.",
   "mode": "quiz",
   "difficulty": "medium",
-  "estimatedMinutes": 35,
   "resources": [
     {
       "type": "official-docs",

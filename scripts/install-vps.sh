@@ -73,9 +73,8 @@ else
   else
     log "Creating default ${FRPS_CONFIG} (inline fallback)..."
     sudo tee "${FRPS_CONFIG}" >/dev/null <<'EOF'
-bindPort = 7000
-vhostHTTPPort = 8080
-token = "CHANGE_ME_TO_A_STRONG_TOKEN"
+bindPort = 43700
+auth.token = "CHANGE_ME_TO_A_STRONG_TOKEN"
 EOF
     log "Created default ${FRPS_CONFIG}."
   fi
@@ -113,26 +112,19 @@ log "--- Firewall guidance ---"
 
 # Determine ports from frps.toml
 BIND_PORT=""
-VHOST_PORT=""
 if command_exists frps && [ -f "${FRPS_CONFIG}" ]; then
   # Best-effort extraction using grep/sed
   BIND_PORT="$(grep -E '^bindPort\s*=' "${FRPS_CONFIG}" | sed -E 's/.*=\s*([0-9]+).*/\1/' | head -n1)"
-  VHOST_PORT="$(grep -E '^vhostHTTPPort\s*=' "${FRPS_CONFIG}" | sed -E 's/.*=\s*([0-9]+).*/\1/' | head -n1)"
 fi
-BIND_PORT="${BIND_PORT:-7000}"
-VHOST_PORT="${VHOST_PORT:-8080}"
+BIND_PORT="${BIND_PORT:-43700}"
 
 PROXY_PORTS=""
-if [ -f "${FRPS_CONFIG}" ]; then
-  # Extract custom proxy ports from array syntax like localPort = 3001
-  PROXY_PORTS="$(grep -E 'localPort\s*=' "${FRPS_CONFIG}" | sed -E 's/.*=\s*([0-9]+).*/\1/' | sort -u | tr '\n' ' ')"
+if [ -f "${REPO_ROOT}/config/frpc.toml.example" ]; then
+  PROXY_PORTS="$(grep -E 'remotePort\s*=' "${REPO_ROOT}/config/frpc.toml.example" | sed -E 's/.*=\s*([0-9]+).*/\1/' | sort -u | tr '\n' ' ')"
 fi
 
 echo "Open these ports in your VPS firewall/Security Group:"
 echo "  - ${BIND_PORT}  (frps control port)"
-if [ -n "${VHOST_PORT}" ]; then
-  echo "  - ${VHOST_PORT}  (frps vhost HTTP port)"
-fi
 if [ -n "${PROXY_PORTS}" ]; then
   echo "  - ${PROXY_PORTS} (configured proxy ports)"
 fi
@@ -144,9 +136,6 @@ if command_exists ufw; then
   if [ "${OPEN_FIREWALL}" = "1" ]; then
     log "OPEN_FIREWALL=1 detected. Opening ports with ufw..."
     sudo ufw allow "${BIND_PORT}/tcp" || warn "Failed to open ${BIND_PORT}"
-    if [ -n "${VHOST_PORT}" ]; then
-      sudo ufw allow "${VHOST_PORT}/tcp" || warn "Failed to open ${VHOST_PORT}"
-    fi
     for pp in ${PROXY_PORTS}; do
       sudo ufw allow "${pp}/tcp" || warn "Failed to open ${pp}"
     done

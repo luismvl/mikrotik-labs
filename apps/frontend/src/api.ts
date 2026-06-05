@@ -3,18 +3,32 @@ import type {
   LabDetail,
   StartLabResult,
   StopLabResult,
+  ResetLabResult,
   ValidateLabResult,
   CompleteManualLabResult,
   PlatformStatus,
+  ActiveLabRef,
 } from './types';
 
 const API_BASE = '/api';
+
+export class ApiError extends Error {
+  status: number;
+  activeLab?: ActiveLabRef;
+
+  constructor(status: number, body: { message?: string; activeLab?: ActiveLabRef }) {
+    super(body.message || `HTTP ${status}`);
+    this.name = 'ApiError';
+    this.status = status;
+    this.activeLab = body.activeLab;
+  }
+}
 
 async function api<T>(url: string, options?: RequestInit): Promise<T> {
   const res = await fetch(`${API_BASE}${url}`, options);
   if (!res.ok) {
     const err = await res.json().catch(() => ({ message: res.statusText }));
-    throw new Error(err.message || `HTTP ${res.status}`);
+    throw new ApiError(res.status, err);
   }
   return res.json() as Promise<T>;
 }
@@ -29,6 +43,8 @@ export const stopLab = (id: string) =>
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ destroy: false }),
   });
+export const resetLab = (id: string) =>
+  api<ResetLabResult>(`/labs/${id}/reset`, { method: 'POST' });
 export const validateLab = (id: string) =>
   api<ValidateLabResult>(`/labs/${id}/validate`, { method: 'POST' });
 export const completeManualLab = (id: string) =>

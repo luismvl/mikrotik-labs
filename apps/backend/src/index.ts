@@ -5,6 +5,7 @@ import {
   getLabDetail,
   startLab,
   stopLab,
+  resetLab,
   validateLab,
   completeManualLab,
   getProgress,
@@ -13,7 +14,7 @@ import {
 
 const app = Fastify({ logger: true });
 
-const PORT = Number(process.env.PORT ?? 3001);
+const PORT = Number(process.env.PORT ?? 43181);
 const HOST = process.env.HOST ?? '127.0.0.1';
 
 async function main() {
@@ -46,7 +47,7 @@ async function main() {
       const { id } = request.params as { id: string };
       const result = await startLab(id);
       if (!result.success) {
-        return reply.status(400).send({ message: result.message });
+        return reply.status(result.activeLab ? 409 : 400).send(result);
       }
       return reply.send(result);
     } catch (err) {
@@ -61,6 +62,19 @@ async function main() {
       const result = await stopLab(id, { destroy: body.destroy });
       if (!result.success) {
         return reply.status(400).send({ message: result.message });
+      }
+      return reply.send(result);
+    } catch (err) {
+      return reply.status(500).send({ message: err instanceof Error ? err.message : String(err) });
+    }
+  });
+
+  app.post('/api/labs/:id/reset', async (request, reply) => {
+    try {
+      const { id } = request.params as { id: string };
+      const result = await resetLab(id);
+      if (!result.success) {
+        return reply.status(result.activeLab ? 409 : 400).send(result);
       }
       return reply.send(result);
     } catch (err) {

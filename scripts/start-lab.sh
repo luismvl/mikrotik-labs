@@ -41,7 +41,12 @@ if ! command -v containerlab >/dev/null 2>&1; then
 fi
 
 log "Deploying lab '${LAB_ID}'..."
-containerlab deploy --topo "${TOPO}"
+if ! containerlab deploy --topo "${TOPO}"; then
+  warn "Deploy failed. Running best-effort cleanup for '${LAB_ID}'..."
+  containerlab destroy --topo "${TOPO}" --cleanup >/dev/null 2>&1 || true
+  docker network rm mikrotik-labs-mgmt >/dev/null 2>&1 || true
+  exit 1
+fi
 
 # ------------------------------------------------------------------
 # Track active lab

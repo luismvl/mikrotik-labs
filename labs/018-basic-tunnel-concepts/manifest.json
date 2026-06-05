@@ -5,7 +5,6 @@
   "description": "Comprende los tipos de tuneles mas comunes en RouterOS (IPIP, EoIP, GRE) y sus casos de uso basicos.",
   "mode": "quiz",
   "difficulty": "medium",
-  "estimatedMinutes": 45,
   "resources": [
     {
       "type": "official-docs",

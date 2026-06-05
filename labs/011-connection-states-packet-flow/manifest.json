@@ -5,7 +5,6 @@
   "description": "Comprende los estados de conexion en RouterOS, el flujo de paquetes y donde se evalua cada regla de firewall.",
   "mode": "quiz",
   "difficulty": "medium",
-  "estimatedMinutes": 45,
   "resources": [
     {
       "type": "official-docs",

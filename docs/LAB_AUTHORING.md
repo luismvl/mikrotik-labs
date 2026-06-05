@@ -11,7 +11,6 @@ Every lab is defined by a `manifest.json` file conforming to the schema in `pack
 - `track` - `MTCNA` or `MTCRE`
 - `mode` - One of `containerlab`, `quiz`, `physical-auto`, `physical-manual`
 - `difficulty` - One of `easy`, `medium`, `hard`, `exam`
-- `estimatedMinutes` - Estimated time to complete the lab
 - `topics` - List of topic tags covered by the lab
 - `resources` - List of `Resource` objects
 - `objectives` - List of learning objectives

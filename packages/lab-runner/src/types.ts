@@ -33,14 +33,26 @@ export interface PlatformStatus {
   activeLab: string | null;
 }
 
+export interface ActiveLabRef {
+  id: string;
+  title: string;
+}
+
 export interface StartLabResult {
   success: boolean;
   message: string;
+  activeLab?: ActiveLabRef;
 }
 
 export interface StopLabResult {
   success: boolean;
   message: string;
+}
+
+export interface ResetLabResult {
+  success: boolean;
+  message: string;
+  activeLab?: ActiveLabRef;
 }
 
 export interface ValidateLabResult {

@@ -30,7 +30,7 @@ if (passed) {
       timeout: 30000,
     });
     const data = JSON.parse(raw);
-    const containers = Array.isArray(data?.containers) ? data.containers : [];
+    const containers = Array.isArray(data?.containers) ? data.containers : Object.values(data ?? {}).flatMap((value: any) => Array.isArray(value) ? value : []);
     const running = containers.filter((node) => String(node.state || "").toLowerCase().includes("running"));
     add("expected nodes are running", running.length >= 3, `Expected at least 3 running nodes, found ${running.length}`);
   } catch (error) {

@@ -85,6 +85,56 @@ body {
 .status-dot.ok { background: var(--success); }
 .status-dot.err { background: var(--danger); }
 
+.active-lab-link {
+  color: #93c5fd;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font: inherit;
+  text-decoration: underline;
+}
+
+.active-lab-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.topbar-reset-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: var(--radius);
+  border: 1px solid #60a5fa;
+  background: #1e3a8a;
+  color: #dbeafe;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+}
+
+.topbar-reset-btn:hover {
+  background: #1d4ed8;
+}
+
+.topbar-reset-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.inline-link {
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
 /* Tabs */
 .track-tabs {
   display: flex;
@@ -226,6 +276,7 @@ body {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.02em;
+  text-wrap: nowrap;
 }
 
 .badge-track-MTCNA { background: #dbeafe; color: #1e40af; }
@@ -239,17 +290,6 @@ body {
 .badge-status-passed { background: #dcfce7; color: #166534; }
 .badge-status-failed { background: #fee2e2; color: #991b1b; }
 .badge-status-completed-manual { background: #ccfbf1; color: #0f766e; }
-
-.meta-pill {
-  display: inline-flex;
-  align-items: center;
-  padding: 2px 8px;
-  border-radius: 999px;
-  font-size: 11px;
-  font-weight: 500;
-  background: #f1f5f9;
-  color: var(--text-secondary);
-}
 
 /* Detail container */
 .detail-container {
@@ -430,6 +470,43 @@ body {
   font-size: 12px;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
+
+.diagram-rendered {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+  overflow: auto;
+}
+
+.diagram-rendered svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.diagram-rendered .node rect,
+.diagram-rendered .node polygon,
+.diagram-rendered .node circle,
+.diagram-rendered .node ellipse {
+  filter: drop-shadow(0 1px 2px rgb(15 23 42 / 0.12));
+  stroke-width: 1.5px;
+}
+
+.diagram-rendered .edgePath path {
+  stroke-width: 1.8px;
+}
+
+.diagram-rendered .edgeLabel {
+  background-color: transparent;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.diagram-rendered text {
+  letter-spacing: 0;
+}
 .markdown-body pre {
   background: #f1f5f9;
   padding: 10px;
@@ -532,6 +609,12 @@ body {
   background: #fef2f2;
   border: 1px solid #fecaca;
   color: #991b1b;
+}
+
+.validation-result.info {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1e40af;
 }
 
 /* Utilities */

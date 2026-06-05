@@ -4,7 +4,6 @@
   "track": "MTCRE",
   "mode": "quiz",
   "difficulty": "hard",
-  "estimatedMinutes": 75,
   "topics": [
     "routing",
     "ospf",

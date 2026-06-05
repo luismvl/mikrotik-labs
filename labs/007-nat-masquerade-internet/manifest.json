@@ -5,21 +5,20 @@
   "description": "Configura NAT masquerade para permitir que la red LAN salga a Internet a traves de una interfaz WAN.",
   "mode": "containerlab",
   "difficulty": "medium",
-  "estimatedMinutes": 40,
   "routers": [
     {
       "name": "r1",
-      "winboxPort": 18001,
-      "sshPort": 12001,
-      "webfigPort": 8081,
+      "winboxPort": 43291,
+      "sshPort": 43221,
+      "webfigPort": 43281,
       "username": "admin",
       "password": "admin"
     },
     {
       "name": "r2",
-      "winboxPort": 18002,
-      "sshPort": 12002,
-      "webfigPort": 8082,
+      "winboxPort": 43292,
+      "sshPort": 43222,
+      "webfigPort": 43282,
       "username": "admin",
       "password": "admin"
     }

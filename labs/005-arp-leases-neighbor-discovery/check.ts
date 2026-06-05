@@ -41,7 +41,7 @@ check("containerlab nodes are deployed", () => {
     timeout: 30000,
   });
   const data = JSON.parse(result);
-  const containers = data?.containers || [];
+  const containers = Array.isArray(data?.containers) ? data.containers : Object.values(data ?? {}).flatMap((value: any) => Array.isArray(value) ? value : []);
   if (containers.length === 0) {
     throw new Error("No containers found for this topology");
   }
