@@ -1,0 +1,50 @@
+{
+  "id": "009-firewall-input-chain",
+  "track": "MTCNA",
+  "title": "Firewall cadena input",
+  "description": "Aplica reglas de firewall en la cadena input para proteger el propio router: filtrar accesos, limitar puertos y gestionar conexiones.",
+  "mode": "containerlab",
+  "difficulty": "medium",
+  "estimatedMinutes": 45,
+  "routers": [
+    {
+      "name": "r1",
+      "winboxPort": 18001,
+      "sshPort": 12001,
+      "webfigPort": 8081,
+      "username": "admin",
+      "password": "admin"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official-docs",
+      "title": "Packet Flow",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/328227/Packet+Flow+in+RouterOS"
+    },
+    {
+      "type": "official-docs",
+      "title": "Common Firewall Matchers and Actions",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/250708064/Common+Firewall+Matchers+and+Actions"
+    },
+    {
+      "type": "search-term",
+      "title": "MikroTik firewall input chain protect router"
+    }
+  ],
+  "objectives": [
+    "Crear reglas input para permitir conexiones establecidas y relacionadas",
+    "Permitir acceso SSH y WinBox solo desde la red LAN",
+    "Deshabilitar (drop) el acceso por defecto al router desde WAN",
+    "Verificar contadores de reglas con /ip firewall filter print"
+  ],
+  "validation": {
+    "type": "automatic"
+  },
+  "topics": [
+    "mtcna",
+    "firewall",
+    "input",
+    "chain"
+  ]
+}

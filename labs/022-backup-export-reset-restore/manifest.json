@@ -1,0 +1,51 @@
+{
+  "id": "022-backup-export-reset-restore",
+  "track": "MTCNA",
+  "title": "Backup, export, reset y restore",
+  "description": "Practica las herramientas de backup de RouterOS: backup binario, export de texto, reset y restore. Es fundamental para la gestion y recuperacion de dispositivos.",
+  "mode": "containerlab",
+  "difficulty": "medium",
+  "estimatedMinutes": 45,
+  "routers": [
+    {
+      "name": "r1",
+      "winboxPort": 18001,
+      "sshPort": 12001,
+      "webfigPort": 8081,
+      "username": "admin",
+      "password": "admin"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official-docs",
+      "title": "Servicios",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/103841820/Services"
+    },
+    {
+      "type": "official-docs",
+      "title": "Packet Flow",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/328227/Packet+Flow+in+RouterOS"
+    },
+    {
+      "type": "search-term",
+      "title": "MikroTik backup export reset restore configuration"
+    }
+  ],
+  "objectives": [
+    "Crear un backup binario (.backup) de la configuracion actual",
+    "Generar un export de texto (.rsc) con la configuracion completa",
+    "Identificar la diferencia entre backup binario y export de texto",
+    "Restaurar la configuracion desde un backup binario"
+  ],
+  "validation": {
+    "type": "automatic"
+  },
+  "topics": [
+    "mtcna",
+    "backup",
+    "export",
+    "reset",
+    "restore"
+  ]
+}

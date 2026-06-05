@@ -1,0 +1,40 @@
+{
+  "id": "015-vlan-concept-introduction",
+  "track": "MTCNA",
+  "title": "VLAN: introduccion conceptual",
+  "description": "Comprende los conceptos fundamentales de VLAN, etiquetado de tramas, puertos trunk y access, y el uso de interfaces VLAN en RouterOS.",
+  "mode": "quiz",
+  "difficulty": "easy",
+  "estimatedMinutes": 30,
+  "resources": [
+    {
+      "type": "official-docs",
+      "title": "VLAN",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/88014957/VLAN"
+    },
+    {
+      "type": "official-docs",
+      "title": "Bridging and Switching",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/328068/Bridging+and+Switching"
+    },
+    {
+      "type": "search-term",
+      "title": "MikroTik VLAN trunk access port tagging"
+    }
+  ],
+  "objectives": [
+    "Diferenciar un puerto trunk de un puerto access",
+    "Comprender el proposito del VID (VLAN ID) y el etiquetado 802.1Q",
+    "Identificar cuando crear una interfaz VLAN en RouterOS",
+    "Reconocer la relacion entre bridge, VLAN y segmentacion de red"
+  ],
+  "validation": {
+    "type": "quiz"
+  },
+  "topics": [
+    "mtcna",
+    "vlan",
+    "concept",
+    "introduction"
+  ]
+}

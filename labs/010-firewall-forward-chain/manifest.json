@@ -1,0 +1,50 @@
+{
+  "id": "010-firewall-forward-chain",
+  "track": "MTCNA",
+  "title": "Firewall cadena forward",
+  "description": "Aplica reglas de firewall en la cadena forward para filtrar trafico que atraviesa el router entre redes LAN y WAN.",
+  "mode": "containerlab",
+  "difficulty": "medium",
+  "estimatedMinutes": 45,
+  "routers": [
+    {
+      "name": "r1",
+      "winboxPort": 18001,
+      "sshPort": 12001,
+      "webfigPort": 8081,
+      "username": "admin",
+      "password": "admin"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official-docs",
+      "title": "Common Firewall Matchers and Actions",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/250708064/Common+Firewall+Matchers+and+Actions"
+    },
+    {
+      "type": "official-docs",
+      "title": "Packet Flow",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/328227/Packet+Flow+in+RouterOS"
+    },
+    {
+      "type": "search-term",
+      "title": "MikroTik firewall forward chain filter traffic"
+    }
+  ],
+  "objectives": [
+    "Crear reglas forward para permitir conexiones establecidas y relacionadas",
+    "Permitir trafico desde LAN hacia WAN y bloquear trafico entrante no solicitado",
+    "Filtrar protocolos especificos (por ejemplo, ICMP) entre segmentos",
+    "Verificar contadores y orden de reglas con /ip firewall filter print"
+  ],
+  "validation": {
+    "type": "automatic"
+  },
+  "topics": [
+    "mtcna",
+    "firewall",
+    "forward",
+    "chain"
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "id": "012-fasttrack-basics-caveats",
+  "track": "MTCNA",
+  "title": "Fasttrack: conceptos basicos y advertencias",
+  "description": "Activa fasttrack para reducir la carga de CPU en trafico forwarding, y comprende sus limitaciones y cuando no aplicar.",
+  "mode": "containerlab",
+  "difficulty": "medium",
+  "estimatedMinutes": 45,
+  "routers": [
+    {
+      "name": "r1",
+      "winboxPort": 18001,
+      "sshPort": 12001,
+      "webfigPort": 8081,
+      "username": "admin",
+      "password": "admin"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official-docs",
+      "title": "Packet Flow",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/328227/Packet+Flow+in+RouterOS"
+    },
+    {
+      "type": "official-docs",
+      "title": "Common Firewall Matchers and Actions",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/250708064/Common+Firewall+Matchers+and+Actions"
+    },
+    {
+      "type": "search-term",
+      "title": "MikroTik fasttrack connection tracking caveats"
+    }
+  ],
+  "objectives": [
+    "Crear una regla fasttrack para trafico established y related",
+    "Verificar que fasttrack aparece en /ip firewall filter print",
+    "Comprender que fasttrack omite queues y otras reglas de firewall",
+    "Identificar escenarios donde fasttrack no debe usarse"
+  ],
+  "validation": {
+    "type": "automatic"
+  },
+  "topics": [
+    "mtcna",
+    "fasttrack",
+    "basics",
+    "caveats"
+  ]
+}

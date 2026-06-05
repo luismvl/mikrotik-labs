@@ -1,0 +1,7 @@
+graph LR
+    A[Red Oficina A] --> B[r1]
+    B --> C[Tunnel IP]
+    C --> D[r2]
+    D --> E[Red Oficina B]
+    B -- IPIP/GRE --> D
+    B -- EoIP capa 2 --> D

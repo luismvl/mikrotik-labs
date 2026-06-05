@@ -1,0 +1,10 @@
+graph LR
+    A[r1 WAN] -- ether2 --> B[r2]
+    B -- ether3 --> C[client Linux]
+    B --> D[/ip dhcp-server]
+    D --> E[Red DHCP incorrecta]
+    B --> F[/ip firewall nat]
+    B --> G[/ip firewall filter]
+    G --> H[ICMP bloqueado]
+    E --> I[Cliente sin IP]
+    H --> J[Cliente sin ping]

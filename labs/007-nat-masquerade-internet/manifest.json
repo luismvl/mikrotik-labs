@@ -1,0 +1,58 @@
+{
+  "id": "007-nat-masquerade-internet",
+  "track": "MTCNA",
+  "title": "NAT, masquerade y acceso a Internet",
+  "description": "Configura NAT masquerade para permitir que la red LAN salga a Internet a traves de una interfaz WAN.",
+  "mode": "containerlab",
+  "difficulty": "medium",
+  "estimatedMinutes": 40,
+  "routers": [
+    {
+      "name": "r1",
+      "winboxPort": 18001,
+      "sshPort": 12001,
+      "webfigPort": 8081,
+      "username": "admin",
+      "password": "admin"
+    },
+    {
+      "name": "r2",
+      "winboxPort": 18002,
+      "sshPort": 12002,
+      "webfigPort": 8082,
+      "username": "admin",
+      "password": "admin"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official-docs",
+      "title": "NAT",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/3211299/NAT"
+    },
+    {
+      "type": "official-docs",
+      "title": "Routes",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/328084/Routes"
+    },
+    {
+      "type": "search-term",
+      "title": "MikroTik masquerade srcnat out-interface"
+    }
+  ],
+  "objectives": [
+    "Configurar una regla srcnat masquerade en la interfaz WAN",
+    "Verificar que los clientes LAN pueden hacer ping a una IP de Internet simulada",
+    "Revisar conexiones activas con /ip firewall connection print",
+    "Comprobar la tabla de rutas para la ruta por defecto"
+  ],
+  "validation": {
+    "type": "automatic"
+  },
+  "topics": [
+    "mtcna",
+    "nat",
+    "masquerade",
+    "internet"
+  ]
+}

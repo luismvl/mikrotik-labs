@@ -1,0 +1,21 @@
+name: 013-bridge-basics
+
+topology:
+  nodes:
+    r1:
+      kind: mikrotik_ros
+      image: vrnetlab/mikrotik_routeros:7.16
+      startup-config: startup/r1.rsc
+      ports:
+        - 18001:8291
+        - 12001:22
+        - 8081:80
+    client1:
+      kind: linux
+      image: alpine:latest
+    client2:
+      kind: linux
+      image: alpine:latest
+  links:
+    - endpoints: ["r1:ether2", "client1:eth1"]
+    - endpoints: ["r1:ether3", "client2:eth1"]

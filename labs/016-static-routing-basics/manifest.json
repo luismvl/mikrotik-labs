@@ -1,0 +1,58 @@
+{
+  "id": "016-static-routing-basics",
+  "track": "MTCNA",
+  "title": "Enrutamiento estatico basico",
+  "description": "Configura rutas estaticas entre dos routers para alcanzar redes no directamente conectadas.",
+  "mode": "containerlab",
+  "difficulty": "medium",
+  "estimatedMinutes": 45,
+  "routers": [
+    {
+      "name": "r1",
+      "winboxPort": 18001,
+      "sshPort": 12001,
+      "webfigPort": 8081,
+      "username": "admin",
+      "password": "admin"
+    },
+    {
+      "name": "r2",
+      "winboxPort": 18002,
+      "sshPort": 12002,
+      "webfigPort": 8082,
+      "username": "admin",
+      "password": "admin"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official-docs",
+      "title": "Routes",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/328084/Routes"
+    },
+    {
+      "type": "official-docs",
+      "title": "Packet Flow",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/328227/Packet+Flow+in+RouterOS"
+    },
+    {
+      "type": "search-term",
+      "title": "MikroTik static route dst-address gateway next-hop"
+    }
+  ],
+  "objectives": [
+    "Agregar una ruta estatica en r1 para alcanzar la red detras de r2",
+    "Agregar una ruta estatica en r2 para alcanzar la red detras de r1",
+    "Verificar la tabla de rutas con /ip route print",
+    "Confirmar conectividad con ping entre redes distantes"
+  ],
+  "validation": {
+    "type": "automatic"
+  },
+  "topics": [
+    "mtcna",
+    "static",
+    "routing",
+    "basics"
+  ]
+}

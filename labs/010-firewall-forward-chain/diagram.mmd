@@ -1,0 +1,7 @@
+graph LR
+    A[Cliente LAN] --> B[r1 MikroTik]
+    B --> C[Internet WAN]
+    C -- new unsolicited --> B
+    B -- drop --> C
+    B -- established/related --> B
+    B --> A

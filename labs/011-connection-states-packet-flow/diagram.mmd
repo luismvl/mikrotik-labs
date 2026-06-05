@@ -1,0 +1,10 @@
+graph TD
+    A[Interfaz de entrada] --> B[Prerouting]
+    B --> C{Destino al router?}
+    C -- Si --> D[Input]
+    C -- No --> E[Forward]
+    E --> F[Postrouting]
+    D --> G[Proceso local]
+    G --> H[Output]
+    H --> F
+    F --> I[Interfaz de salida]

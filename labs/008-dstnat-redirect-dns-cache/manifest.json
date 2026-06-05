@@ -1,0 +1,51 @@
+{
+  "id": "008-dstnat-redirect-dns-cache",
+  "track": "MTCNA",
+  "title": "DstNAT, redireccion y cache DNS",
+  "description": "Configura dstNAT para redirigir trafico y publica un servicio interno; aprovecha el cache DNS local.",
+  "mode": "containerlab",
+  "difficulty": "medium",
+  "estimatedMinutes": 40,
+  "routers": [
+    {
+      "name": "r1",
+      "winboxPort": 18001,
+      "sshPort": 12001,
+      "webfigPort": 8081,
+      "username": "admin",
+      "password": "admin"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official-docs",
+      "title": "NAT",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/3211299/NAT"
+    },
+    {
+      "type": "official-docs",
+      "title": "Servicios",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/103841820/Services"
+    },
+    {
+      "type": "search-term",
+      "title": "MikroTik dstnat redirect to port firewall nat"
+    }
+  ],
+  "objectives": [
+    "Redirigir el trafico DNS entrante al puerto 53 del router",
+    "Configurar dstNAT para publicar un servicio TCP interno",
+    "Verificar reglas NAT con /ip firewall nat print",
+    "Consultar el cache DNS con /ip dns cache print"
+  ],
+  "validation": {
+    "type": "automatic"
+  },
+  "topics": [
+    "mtcna",
+    "dstnat",
+    "redirect",
+    "dns",
+    "cache"
+  ]
+}

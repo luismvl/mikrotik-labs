@@ -1,0 +1,50 @@
+{
+  "id": "002-users-services-management",
+  "track": "MTCNA",
+  "title": "Gestion de usuarios y servicios",
+  "description": "Administra usuarios locales y servicios de acceso en RouterOS para endurecer la seguridad basica.",
+  "mode": "containerlab",
+  "difficulty": "easy",
+  "estimatedMinutes": 30,
+  "routers": [
+    {
+      "name": "r1",
+      "winboxPort": 18001,
+      "sshPort": 12001,
+      "webfigPort": 8081,
+      "username": "admin",
+      "password": "admin"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official-docs",
+      "title": "Servicios",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/103841820/Services"
+    },
+    {
+      "type": "official-docs",
+      "title": "Routes",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/328084/Routes"
+    },
+    {
+      "type": "search-term",
+      "title": "MikroTik user management group policies"
+    }
+  ],
+  "objectives": [
+    "Crear un usuario adicional con grupo full y contrasena segura",
+    "Deshabilitar servicios innecesarios (telnet, ftp, www-ssl si no se usan)",
+    "Verificar la lista de usuarios activos (/user print)",
+    "Configurar el nombre del router (system identity)"
+  ],
+  "validation": {
+    "type": "automatic"
+  },
+  "topics": [
+    "mtcna",
+    "users",
+    "services",
+    "management"
+  ]
+}

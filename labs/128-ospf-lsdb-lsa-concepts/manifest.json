@@ -1,0 +1,48 @@
+{
+  "id": "128-ospf-lsdb-lsa-concepts",
+  "title": "OSPF LSDB and LSA concepts",
+  "track": "MTCRE",
+  "mode": "quiz",
+  "difficulty": "hard",
+  "estimatedMinutes": 75,
+  "topics": [
+    "routing",
+    "ospf",
+    "lsdb",
+    "lsa"
+  ],
+  "resources": [
+    {
+      "type": "official-docs",
+      "title": "RouterOS Routes",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/328084/Routes"
+    },
+    {
+      "type": "official-docs",
+      "title": "RouterOS OSPF",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/331612216/routing+ospf"
+    },
+    {
+      "type": "official-docs",
+      "title": "Packet Flow in RouterOS",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/328227/Packet+Flow+in+RouterOS"
+    },
+    {
+      "type": "search-term",
+      "title": "MikroTik RouterOS 7 OSPF LSDB and LSA concepts"
+    },
+    {
+      "type": "search-term",
+      "title": "MTCRE OSPF LSDB and LSA concepts lab"
+    }
+  ],
+  "objectives": [
+    "Analizar el escenario de OSPF LSDB and LSA concepts sin depender de una receta paso a paso",
+    "Disenar la tabla de rutas o el dominio dinamico requerido",
+    "Aplicar configuracion RouterOS consistente entre routers",
+    "Validar conectividad, redundancia y seleccion de ruta"
+  ],
+  "validation": {
+    "type": "quiz"
+  }
+}

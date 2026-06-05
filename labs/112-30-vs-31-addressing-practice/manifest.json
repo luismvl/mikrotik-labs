@@ -1,0 +1,68 @@
+{
+  "id": "112-30-vs-31-addressing-practice",
+  "title": "/30 vs /31 addressing practice",
+  "track": "MTCRE",
+  "mode": "containerlab",
+  "difficulty": "medium",
+  "estimatedMinutes": 60,
+  "topics": [
+    "routing",
+    "point-to-point",
+    "addressing"
+  ],
+  "resources": [
+    {
+      "type": "official-docs",
+      "title": "RouterOS Routes",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/328084/Routes"
+    },
+    {
+      "type": "official-docs",
+      "title": "Packet Flow in RouterOS",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/328227/Packet+Flow+in+RouterOS"
+    },
+    {
+      "type": "search-term",
+      "title": "MikroTik RouterOS 7 /30 vs /31 addressing practice"
+    },
+    {
+      "type": "search-term",
+      "title": "MTCRE /30 vs /31 addressing practice lab"
+    }
+  ],
+  "routers": [
+    {
+      "name": "r1",
+      "winboxPort": 18001,
+      "sshPort": 12001,
+      "webfigPort": 8081,
+      "username": "admin",
+      "password": "admin"
+    },
+    {
+      "name": "r2",
+      "winboxPort": 18002,
+      "sshPort": 12002,
+      "webfigPort": 8082,
+      "username": "admin",
+      "password": "admin"
+    },
+    {
+      "name": "r3",
+      "winboxPort": 18003,
+      "sshPort": 12003,
+      "webfigPort": 8083,
+      "username": "admin",
+      "password": "admin"
+    }
+  ],
+  "objectives": [
+    "Analizar el escenario de /30 vs /31 addressing practice sin depender de una receta paso a paso",
+    "Disenar la tabla de rutas o el dominio dinamico requerido",
+    "Aplicar configuracion RouterOS consistente entre routers",
+    "Validar conectividad, redundancia y seleccion de ruta"
+  ],
+  "validation": {
+    "type": "automatic"
+  }
+}

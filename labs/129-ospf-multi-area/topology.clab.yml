@@ -1,0 +1,31 @@
+name: 129-ospf-multi-area
+
+topology:
+  nodes:
+    r1:
+      kind: mikrotik_ros
+      image: vrnetlab/mikrotik_routeros:7.16
+      startup-config: startup/r1.rsc
+      ports:
+        - 18001:8291
+        - 12001:22
+        - 8081:80
+    r2:
+      kind: mikrotik_ros
+      image: vrnetlab/mikrotik_routeros:7.16
+      startup-config: startup/r2.rsc
+      ports:
+        - 18002:8291
+        - 12002:22
+        - 8082:80
+    r3:
+      kind: mikrotik_ros
+      image: vrnetlab/mikrotik_routeros:7.16
+      startup-config: startup/r3.rsc
+      ports:
+        - 18003:8291
+        - 12003:22
+        - 8083:80
+  links:
+    - endpoints: ["r1:ether2", "r2:ether2"]
+    - endpoints: ["r2:ether3", "r3:ether2"]

@@ -1,0 +1,11 @@
+graph LR
+    A[r1 WAN/Central] -- ether2 --> B[r2]
+    B -- ether3 --> C[client Linux]
+    B --> D[/ip dhcp-server]
+    B --> E[/ip firewall nat]
+    B --> F[/ip firewall filter]
+    B --> G[/queue simple]
+    D --> C
+    E --> A
+    F --> C
+    G --> C

@@ -1,0 +1,50 @@
+{
+  "id": "003-interface-ip-addressing",
+  "track": "MTCNA",
+  "title": "Interfaces y direccionamiento IP",
+  "description": "Configura interfaces Ethernet, asigna direcciones IP y verifica conectividad con ping.",
+  "mode": "containerlab",
+  "difficulty": "easy",
+  "estimatedMinutes": 30,
+  "routers": [
+    {
+      "name": "r1",
+      "winboxPort": 18001,
+      "sshPort": 12001,
+      "webfigPort": 8081,
+      "username": "admin",
+      "password": "admin"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official-docs",
+      "title": "Routes",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/328084/Routes"
+    },
+    {
+      "type": "official-docs",
+      "title": "Servicios",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/103841820/Services"
+    },
+    {
+      "type": "search-term",
+      "title": "MikroTik IP address interface configuration"
+    }
+  ],
+  "objectives": [
+    "Asignar una direccion IP a la interfaz LAN (ether2)",
+    "Verificar las interfaces con /interface print",
+    "Comprobar conectividad con ping desde el router",
+    "Verificar la tabla de rutas con /ip route print"
+  ],
+  "validation": {
+    "type": "automatic"
+  },
+  "topics": [
+    "mtcna",
+    "interface",
+    "ip",
+    "addressing"
+  ]
+}

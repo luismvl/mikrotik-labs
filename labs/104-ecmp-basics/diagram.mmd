@@ -1,0 +1,5 @@
+flowchart LR
+  LAN1[LAN/Sede A] --- R1[r1]
+  R1 -- ether2 /30 --- R2[r2 transit]
+  R2 -- ether3 /30 --- R3[r3]
+  R3 --- LAN3[LAN/Sede B]

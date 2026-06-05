@@ -1,0 +1,51 @@
+{
+  "id": "005-arp-leases-neighbor-discovery",
+  "track": "MTCNA",
+  "title": "ARP, leases y descubrimiento de vecinos",
+  "description": "Explora ARP, leases DHCP estaticos/dinamicos, y el descubrimiento de vecinos (MNDP/CDP/LLDP) en RouterOS.",
+  "mode": "containerlab",
+  "difficulty": "medium",
+  "estimatedMinutes": 35,
+  "routers": [
+    {
+      "name": "r1",
+      "winboxPort": 18001,
+      "sshPort": 12001,
+      "webfigPort": 8081,
+      "username": "admin",
+      "password": "admin"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official-docs",
+      "title": "DHCP",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/24805500/DHCP"
+    },
+    {
+      "type": "official-docs",
+      "title": "Servicios",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/103841820/Services"
+    },
+    {
+      "type": "search-term",
+      "title": "MikroTik ARP static lease neighbor discovery"
+    }
+  ],
+  "objectives": [
+    "Convertir un lease DHCP dinamico en estatico (make-static)",
+    "Configurar una entrada ARP estatica asociada al lease",
+    "Habilitar y verificar el descubrimiento de vecinos en las interfaces",
+    "Revisar la tabla de vecinos con /ip neighbor print"
+  ],
+  "validation": {
+    "type": "automatic"
+  },
+  "topics": [
+    "mtcna",
+    "arp",
+    "leases",
+    "neighbor",
+    "discovery"
+  ]
+}

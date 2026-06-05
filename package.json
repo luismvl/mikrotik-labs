@@ -1,0 +1,21 @@
+{
+  "name": "mikrotik-labs",
+  "private": true,
+  "version": "0.1.0",
+  "description": "MikroTik certification labs monorepo",
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --build --force",
+    "test": "pnpm validate:labs",
+    "dev": "pnpm --parallel --filter @mikrotik-labs/backend --filter @mikrotik-labs/frontend dev",
+    "validate:labs": "pnpm --filter @mikrotik-labs/lab-runner exec tsx src/cli.ts validate-labs",
+    "build": "tsc --build && pnpm --filter @mikrotik-labs/frontend build"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0"
+  },
+  "packageManager": "pnpm@11.5.1",
+  "engines": {
+    "node": ">=20"
+  }
+}

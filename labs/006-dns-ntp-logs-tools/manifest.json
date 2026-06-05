@@ -1,0 +1,51 @@
+{
+  "id": "006-dns-ntp-logs-tools",
+  "track": "MTCNA",
+  "title": "DNS, NTP, logs y herramientas",
+  "description": "Configura el cache DNS, servidor DNS, cliente NTP, y utiliza herramientas de diagnostico como ping, traceroute y torch.",
+  "mode": "containerlab",
+  "difficulty": "medium",
+  "estimatedMinutes": 35,
+  "routers": [
+    {
+      "name": "r1",
+      "winboxPort": 18001,
+      "sshPort": 12001,
+      "webfigPort": 8081,
+      "username": "admin",
+      "password": "admin"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official-docs",
+      "title": "Servicios",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/103841820/Services"
+    },
+    {
+      "type": "official-docs",
+      "title": "Routes",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/328084/Routes"
+    },
+    {
+      "type": "search-term",
+      "title": "MikroTik DNS cache NTP client configuration"
+    }
+  ],
+  "objectives": [
+    "Configurar servidores DNS y activar el allow-remote-requests",
+    "Habilitar el cliente NTP y sincronizar la hora",
+    "Consultar logs recientes con /log print",
+    "Usar herramientas de red (ping, traceroute) desde el router"
+  ],
+  "validation": {
+    "type": "automatic"
+  },
+  "topics": [
+    "mtcna",
+    "dns",
+    "ntp",
+    "logs",
+    "tools"
+  ]
+}

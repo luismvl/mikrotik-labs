@@ -1,0 +1,73 @@
+{
+  "id": "119-qinq-lab",
+  "title": "QinQ lab",
+  "track": "MTCRE",
+  "mode": "containerlab",
+  "difficulty": "hard",
+  "estimatedMinutes": 75,
+  "topics": [
+    "routing",
+    "vlan",
+    "qinq"
+  ],
+  "resources": [
+    {
+      "type": "official-docs",
+      "title": "RouterOS Routes",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/328084/Routes"
+    },
+    {
+      "type": "official-docs",
+      "title": "RouterOS VLAN",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/88014957/VLAN"
+    },
+    {
+      "type": "official-docs",
+      "title": "RouterOS Bridging and Switching",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/328068/Bridging+and+Switching"
+    },
+    {
+      "type": "search-term",
+      "title": "MikroTik RouterOS 7 QinQ lab"
+    },
+    {
+      "type": "search-term",
+      "title": "MTCRE QinQ lab lab"
+    }
+  ],
+  "routers": [
+    {
+      "name": "r1",
+      "winboxPort": 18001,
+      "sshPort": 12001,
+      "webfigPort": 8081,
+      "username": "admin",
+      "password": "admin"
+    },
+    {
+      "name": "r2",
+      "winboxPort": 18002,
+      "sshPort": 12002,
+      "webfigPort": 8082,
+      "username": "admin",
+      "password": "admin"
+    },
+    {
+      "name": "r3",
+      "winboxPort": 18003,
+      "sshPort": 12003,
+      "webfigPort": 8083,
+      "username": "admin",
+      "password": "admin"
+    }
+  ],
+  "objectives": [
+    "Analizar el escenario de QinQ lab sin depender de una receta paso a paso",
+    "Disenar la tabla de rutas o el dominio dinamico requerido",
+    "Aplicar configuracion RouterOS consistente entre routers",
+    "Validar conectividad, redundancia y seleccion de ruta"
+  ],
+  "validation": {
+    "type": "automatic"
+  }
+}

@@ -1,0 +1,5 @@
+graph LR
+    A[Red externa] -- ether1 --> B[r1 MikroTik]
+    B -- ether2 --> C[client Linux]
+    B -- DHCP cliente --> A
+    B -- DHCP servidor --> C

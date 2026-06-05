@@ -1,0 +1,9 @@
+graph TD
+    A[Switch] --> B[Trunk]
+    B --> C[Router/Switch]
+    A --> D[Access Port VLAN10]
+    A --> E[Access Port VLAN20]
+    D --> F[PC VLAN10]
+    E --> G[PC VLAN20]
+    B -- tagged VLAN10 --> C
+    B -- tagged VLAN20 --> C

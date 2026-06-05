@@ -1,0 +1,58 @@
+{
+  "id": "025-troubleshooting-firewall-mistake",
+  "track": "MTCNA",
+  "title": "Troubleshooting: error de firewall",
+  "description": "Diagnostica y corrige un escenario donde un firewall mal configurado bloquea trafico legitimo entre dos routers. Aplica reglas de filtrado correctas preservando la seguridad.",
+  "mode": "containerlab",
+  "difficulty": "hard",
+  "estimatedMinutes": 60,
+  "routers": [
+    {
+      "name": "r1",
+      "winboxPort": 18001,
+      "sshPort": 12001,
+      "webfigPort": 8081,
+      "username": "admin",
+      "password": "admin"
+    },
+    {
+      "name": "r2",
+      "winboxPort": 18002,
+      "sshPort": 12002,
+      "webfigPort": 8082,
+      "username": "admin",
+      "password": "admin"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official-docs",
+      "title": "Firewall matchers/actions",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/250708064/Common+Firewall+Matchers+and+Actions"
+    },
+    {
+      "type": "official-docs",
+      "title": "Packet Flow",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/328227/Packet+Flow+in+RouterOS"
+    },
+    {
+      "type": "search-term",
+      "title": "MikroTik firewall troubleshooting drop rules not working"
+    }
+  ],
+  "objectives": [
+    "Identificar reglas de firewall que bloquean trafico legitimo por error",
+    "Corregir el orden de las reglas de filter sin comprometer la seguridad",
+    "Verificar conectividad TCP, UDP e ICMP tras la correccion",
+    "Explicar el impacto del orden de las reglas en el firewall de RouterOS"
+  ],
+  "validation": {
+    "type": "automatic"
+  },
+  "topics": [
+    "mtcna",
+    "troubleshooting",
+    "firewall",
+    "mistake"
+  ]
+}

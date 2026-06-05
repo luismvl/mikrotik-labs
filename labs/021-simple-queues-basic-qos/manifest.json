@@ -1,0 +1,59 @@
+{
+  "id": "021-simple-queues-basic-qos",
+  "track": "MTCNA",
+  "title": "Simple queues: QoS basico",
+  "description": "Configura simple queues en RouterOS para limitar y priorizar el trafico entre dos redes. Aplica target, max-limit y dst para controlar el ancho de banda.",
+  "mode": "containerlab",
+  "difficulty": "medium",
+  "estimatedMinutes": 45,
+  "routers": [
+    {
+      "name": "r1",
+      "winboxPort": 18001,
+      "sshPort": 12001,
+      "webfigPort": 8081,
+      "username": "admin",
+      "password": "admin"
+    },
+    {
+      "name": "r2",
+      "winboxPort": 18002,
+      "sshPort": 12002,
+      "webfigPort": 8082,
+      "username": "admin",
+      "password": "admin"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official-docs",
+      "title": "Queues",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/328088/Queues"
+    },
+    {
+      "type": "official-docs",
+      "title": "NAT",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/3211299/NAT"
+    },
+    {
+      "type": "search-term",
+      "title": "MikroTik simple queues target max-limit dst configuration"
+    }
+  ],
+  "objectives": [
+    "Configurar una simple queue con target en una red o IP especifica",
+    "Aplicar un limite maximo de subida y bajada (max-limit)",
+    "Verificar que la queue se activa y contabiliza trafico",
+    "Entender la diferencia entre target, dst y la interfaz de aplicacion"
+  ],
+  "validation": {
+    "type": "automatic"
+  },
+  "topics": [
+    "mtcna",
+    "simple",
+    "queues",
+    "basic",
+    "qos"
+  ]
+}

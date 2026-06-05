@@ -1,0 +1,59 @@
+{
+  "id": "024-troubleshooting-broken-dhcp-nat",
+  "track": "MTCNA",
+  "title": "Troubleshooting: DHCP y NAT rotos",
+  "description": "Diagnostica y corrige un escenario donde los clientes no obtienen IP o no tienen acceso a Internet por errores en DHCP o NAT. Aplica un metodo sistematico de troubleshooting.",
+  "mode": "containerlab",
+  "difficulty": "hard",
+  "estimatedMinutes": 60,
+  "routers": [
+    {
+      "name": "r1",
+      "winboxPort": 18001,
+      "sshPort": 12001,
+      "webfigPort": 8081,
+      "username": "admin",
+      "password": "admin"
+    },
+    {
+      "name": "r2",
+      "winboxPort": 18002,
+      "sshPort": 12002,
+      "webfigPort": 8082,
+      "username": "admin",
+      "password": "admin"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official-docs",
+      "title": "DHCP",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/24805500/DHCP"
+    },
+    {
+      "type": "official-docs",
+      "title": "NAT",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/3211299/NAT"
+    },
+    {
+      "type": "search-term",
+      "title": "MikroTik troubleshooting DHCP not working NAT masquerade broken"
+    }
+  ],
+  "objectives": [
+    "Identificar si un cliente no obtiene IP por problemas de servidor, pool o red DHCP",
+    "Detectar errores en la regla NAT masquerade o en el srcnat",
+    "Verificar conectividad paso a paso (capa 1, 2, 3) y resolver el problema",
+    "Documentar la causa raiz y la solucion aplicada"
+  ],
+  "validation": {
+    "type": "automatic"
+  },
+  "topics": [
+    "mtcna",
+    "troubleshooting",
+    "broken",
+    "dhcp",
+    "nat"
+  ]
+}

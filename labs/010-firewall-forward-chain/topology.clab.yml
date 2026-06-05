@@ -1,0 +1,17 @@
+name: 010-firewall-forward-chain
+
+topology:
+  nodes:
+    r1:
+      kind: mikrotik_ros
+      image: vrnetlab/mikrotik_routeros:7.16
+      startup-config: startup/r1.rsc
+      ports:
+        - 18001:8291
+        - 12001:22
+        - 8081:80
+    client:
+      kind: linux
+      image: alpine:latest
+  links:
+    - endpoints: ["r1:ether2", "client:eth1"]

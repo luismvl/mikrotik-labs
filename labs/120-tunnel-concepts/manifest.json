@@ -1,0 +1,46 @@
+{
+  "id": "120-tunnel-concepts",
+  "title": "Tunnel concepts",
+  "track": "MTCRE",
+  "mode": "quiz",
+  "difficulty": "hard",
+  "estimatedMinutes": 75,
+  "topics": [
+    "routing",
+    "tunnels"
+  ],
+  "resources": [
+    {
+      "type": "official-docs",
+      "title": "RouterOS Routes",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/328084/Routes"
+    },
+    {
+      "type": "official-docs",
+      "title": "RouterOS PPP and tunnels",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/328072/PPP"
+    },
+    {
+      "type": "official-docs",
+      "title": "Packet Flow in RouterOS",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/328227/Packet+Flow+in+RouterOS"
+    },
+    {
+      "type": "search-term",
+      "title": "MikroTik RouterOS 7 Tunnel concepts"
+    },
+    {
+      "type": "search-term",
+      "title": "MTCRE Tunnel concepts lab"
+    }
+  ],
+  "objectives": [
+    "Analizar el escenario de Tunnel concepts sin depender de una receta paso a paso",
+    "Disenar la tabla de rutas o el dominio dinamico requerido",
+    "Aplicar configuracion RouterOS consistente entre routers",
+    "Validar conectividad, redundancia y seleccion de ruta"
+  ],
+  "validation": {
+    "type": "quiz"
+  }
+}

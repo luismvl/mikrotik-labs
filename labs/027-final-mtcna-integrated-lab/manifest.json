@@ -1,0 +1,64 @@
+{
+  "id": "027-final-mtcna-integrated-lab",
+  "track": "MTCNA",
+  "title": "Laboratorio integrado final MTCNA",
+  "description": "Laboratorio integrado de examen que combina acceso, IP, DHCP, NAT, firewall, queues, bridges y herramientas de diagnostico en un escenario completo con dos routers.",
+  "mode": "containerlab",
+  "difficulty": "exam",
+  "estimatedMinutes": 90,
+  "routers": [
+    {
+      "name": "r1",
+      "winboxPort": 18001,
+      "sshPort": 12001,
+      "webfigPort": 8081,
+      "username": "admin",
+      "password": "admin"
+    },
+    {
+      "name": "r2",
+      "winboxPort": 18002,
+      "sshPort": 12002,
+      "webfigPort": 8082,
+      "username": "admin",
+      "password": "admin"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official-docs",
+      "title": "DHCP",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/24805500/DHCP"
+    },
+    {
+      "type": "official-docs",
+      "title": "NAT",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/3211299/NAT"
+    },
+    {
+      "type": "official-docs",
+      "title": "Firewall matchers/actions",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/250708064/Common+Firewall+Matchers+and+Actions"
+    },
+    {
+      "type": "search-term",
+      "title": "MikroTik MTCNA integrated lab exam practice"
+    }
+  ],
+  "objectives": [
+    "Configurar direccionamiento IP, rutas estaticas y DHCP entre dos routers",
+    "Aplicar NAT masquerade para salida a Internet simulada",
+    "Configurar firewall filter basico que permita trafico legitimo y bloquee lo demas",
+    "Implementar simple queues para limitar ancho de banda entre redes",
+    "Usar herramientas de diagnostico para verificar la configuracion final"
+  ],
+  "validation": {
+    "type": "automatic"
+  },
+  "topics": [
+    "mtcna",
+    "final",
+    "integrated",
+    "lab"
+  ]
+}

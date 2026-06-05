@@ -1,0 +1,11 @@
+graph LR
+    A[Host A] -- untagged VLAN 10 --> B[ether2]
+    C[Host B] -- untagged VLAN 10 --> D[ether3]
+    B --> E[br1]
+    D --> E
+    E --> F[ether4 trunk]
+    F --> G[Switch trunk]
+    E --> H[vlan-filtering=yes]
+    H --> I[/interface bridge vlan]
+    I --> J[VLAN 10 untagged ether2,ether3]
+    I --> K[VLAN 10,20 tagged ether4]

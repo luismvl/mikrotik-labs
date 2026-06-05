@@ -1,0 +1,57 @@
+{
+  "id": "014-bridge-troubleshooting",
+  "track": "MTCNA",
+  "title": "Bridge: solucion de problemas",
+  "description": "Diagnostica y corrige problemas comunes en configuraciones de bridge en RouterOS.",
+  "mode": "containerlab",
+  "difficulty": "medium",
+  "estimatedMinutes": 45,
+  "routers": [
+    {
+      "name": "r1",
+      "winboxPort": 18001,
+      "sshPort": 12001,
+      "webfigPort": 8081,
+      "username": "admin",
+      "password": "admin"
+    },
+    {
+      "name": "r2",
+      "winboxPort": 18002,
+      "sshPort": 12002,
+      "webfigPort": 8082,
+      "username": "admin",
+      "password": "admin"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official-docs",
+      "title": "Bridging and Switching",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/328068/Bridging+and+Switching"
+    },
+    {
+      "type": "official-docs",
+      "title": "Packet Flow",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/328227/Packet+Flow+in+RouterOS"
+    },
+    {
+      "type": "search-term",
+      "title": "MikroTik bridge troubleshooting no MAC learning"
+    }
+  ],
+  "objectives": [
+    "Identificar puertos faltantes o mal configurados en un bridge",
+    "Verificar la tabla de hosts y detectar ausencia de entradas",
+    "Corregir configuraciones de bridge que impiden la comunicacion",
+    "Validar conectividad despues de aplicar correcciones"
+  ],
+  "validation": {
+    "type": "automatic"
+  },
+  "topics": [
+    "mtcna",
+    "bridge",
+    "troubleshooting"
+  ]
+}

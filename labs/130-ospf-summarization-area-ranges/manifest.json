@@ -1,0 +1,47 @@
+{
+  "id": "130-ospf-summarization-area-ranges",
+  "title": "OSPF summarization and area ranges",
+  "track": "MTCRE",
+  "mode": "quiz",
+  "difficulty": "hard",
+  "estimatedMinutes": 75,
+  "topics": [
+    "routing",
+    "ospf",
+    "summarization"
+  ],
+  "resources": [
+    {
+      "type": "official-docs",
+      "title": "RouterOS Routes",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/328084/Routes"
+    },
+    {
+      "type": "official-docs",
+      "title": "RouterOS OSPF",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/331612216/routing+ospf"
+    },
+    {
+      "type": "official-docs",
+      "title": "Packet Flow in RouterOS",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/328227/Packet+Flow+in+RouterOS"
+    },
+    {
+      "type": "search-term",
+      "title": "MikroTik RouterOS 7 OSPF summarization and area ranges"
+    },
+    {
+      "type": "search-term",
+      "title": "MTCRE OSPF summarization and area ranges lab"
+    }
+  ],
+  "objectives": [
+    "Analizar el escenario de OSPF summarization and area ranges sin depender de una receta paso a paso",
+    "Disenar la tabla de rutas o el dominio dinamico requerido",
+    "Aplicar configuracion RouterOS consistente entre routers",
+    "Validar conectividad, redundancia y seleccion de ruta"
+  ],
+  "validation": {
+    "type": "quiz"
+  }
+}

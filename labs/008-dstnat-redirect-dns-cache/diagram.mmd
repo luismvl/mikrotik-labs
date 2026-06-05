@@ -1,0 +1,6 @@
+graph LR
+    A[client Linux] -- DNS query --> B[r1 MikroTik]
+    B -- redirect 53 --> B
+    B -- cache / upstream --> C[8.8.8.8]
+    D[Usuario externo] -- dstNAT 8080 --> B
+    B -- to-ports 80 --> E[Servicio interno]

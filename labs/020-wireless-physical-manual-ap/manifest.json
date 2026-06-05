@@ -1,0 +1,56 @@
+{
+  "id": "020-wireless-physical-manual-ap",
+  "track": "MTCNA",
+  "title": "Wireless fisico: configuracion manual de AP",
+  "description": "Configura un AP wireless real en un router MikroTik fisico con SSID, seguridad WPA2 y DHCP local. Se usa el modo manual (Plan B) cuando el servidor no puede acceder al dispositivo.",
+  "mode": "physical-manual",
+  "difficulty": "medium",
+  "estimatedMinutes": 45,
+  "hardware": {
+    "required": true,
+    "deviceType": "mikrotik-wireless-router",
+    "connectionMode": "manual"
+  },
+  "routers": [
+    {
+      "name": "r1",
+      "winboxPort": 18001,
+      "sshPort": 12001,
+      "webfigPort": 8081,
+      "username": "admin",
+      "password": "admin"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official-docs",
+      "title": "Wireless",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/8978446/Wireless"
+    },
+    {
+      "type": "official-docs",
+      "title": "DHCP",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/24805500/DHCP"
+    },
+    {
+      "type": "search-term",
+      "title": "MikroTik wireless AP setup WPA2 DHCP step by step"
+    }
+  ],
+  "objectives": [
+    "Configurar un AP wireless con SSID y seguridad WPA2 en un router MikroTik fisico",
+    "Activar un servidor DHCP para la red wireless local",
+    "Verificar que un cliente se conecta y obtiene lease DHCP",
+    "Confirmar conectividad hacia el gateway MikroTik desde el cliente"
+  ],
+  "validation": {
+    "type": "manual"
+  },
+  "topics": [
+    "mtcna",
+    "wireless",
+    "physical",
+    "manual",
+    "ap"
+  ]
+}

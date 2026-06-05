@@ -1,0 +1,58 @@
+{
+  "id": "017-ppp-pppoe-basics",
+  "track": "MTCNA",
+  "title": "PPP y PPPoE: conceptos basicos",
+  "description": "Configura un servidor PPPoE en un router y un cliente PPPoE en otro para establecer una conexion punto a punto sobre Ethernet.",
+  "mode": "containerlab",
+  "difficulty": "medium",
+  "estimatedMinutes": 45,
+  "routers": [
+    {
+      "name": "r1",
+      "winboxPort": 18001,
+      "sshPort": 12001,
+      "webfigPort": 8081,
+      "username": "admin",
+      "password": "admin"
+    },
+    {
+      "name": "r2",
+      "winboxPort": 18002,
+      "sshPort": 12002,
+      "webfigPort": 8082,
+      "username": "admin",
+      "password": "admin"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official-docs",
+      "title": "PPP",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/328072/PPP"
+    },
+    {
+      "type": "official-docs",
+      "title": "Routes",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/328084/Routes"
+    },
+    {
+      "type": "search-term",
+      "title": "MikroTik PPPoE server client setup profile"
+    }
+  ],
+  "objectives": [
+    "Configurar un servidor PPPoE en r1 con un perfil y un usuario local",
+    "Configurar un cliente PPPoE en r2 para conectarse a r1",
+    "Verificar que la interfaz PPPoE-cliente esta running en r2",
+    "Confirmar conectividad a traves del enlace PPPoE"
+  ],
+  "validation": {
+    "type": "automatic"
+  },
+  "topics": [
+    "mtcna",
+    "ppp",
+    "pppoe",
+    "basics"
+  ]
+}

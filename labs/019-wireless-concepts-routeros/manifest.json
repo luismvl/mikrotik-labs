@@ -1,0 +1,40 @@
+{
+  "id": "019-wireless-concepts-routeros",
+  "track": "MTCNA",
+  "title": "Conceptos de wireless en RouterOS",
+  "description": "Comprende los conceptos fundamentales de redes inalambricas en RouterOS: bandas, modos, seguridad y el menu /interface wireless.",
+  "mode": "quiz",
+  "difficulty": "medium",
+  "estimatedMinutes": 35,
+  "resources": [
+    {
+      "type": "official-docs",
+      "title": "Wireless",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/8978446/Wireless"
+    },
+    {
+      "type": "official-docs",
+      "title": "DHCP",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/24805500/DHCP"
+    },
+    {
+      "type": "search-term",
+      "title": "MikroTik wireless mode ap bridge station bridge explained"
+    }
+  ],
+  "objectives": [
+    "Identificar las bandas de frecuencia disponibles en MikroTik (2.4 GHz y 5 GHz)",
+    "Diferenciar los modos wireless (ap-bridge, station, bridge, etc.)",
+    "Conocer los protocolos de seguridad wireless soportados (WEP, WPA, WPA2, WPA3)",
+    "Entender la relacion entre el menu /interface wireless y la configuracion de interfaces fisicas"
+  ],
+  "validation": {
+    "type": "quiz"
+  },
+  "topics": [
+    "mtcna",
+    "wireless",
+    "concepts",
+    "routeros"
+  ]
+}

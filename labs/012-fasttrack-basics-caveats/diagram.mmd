@@ -1,0 +1,6 @@
+graph LR
+    A[Cliente] --> B[r1]
+    B --> C[Destino]
+    C --> B
+    B --> A
+    B -. fasttrack .-> D[Omitir queues y firewall adicional]

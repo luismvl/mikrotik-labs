@@ -1,0 +1,41 @@
+{
+  "id": "011-connection-states-packet-flow",
+  "track": "MTCNA",
+  "title": "Estados de conexion y flujo de paquetes",
+  "description": "Comprende los estados de conexion en RouterOS, el flujo de paquetes y donde se evalua cada regla de firewall.",
+  "mode": "quiz",
+  "difficulty": "medium",
+  "estimatedMinutes": 45,
+  "resources": [
+    {
+      "type": "official-docs",
+      "title": "Packet Flow",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/328227/Packet+Flow+in+RouterOS"
+    },
+    {
+      "type": "official-docs",
+      "title": "Common Firewall Matchers and Actions",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/250708064/Common+Firewall+Matchers+and+Actions"
+    },
+    {
+      "type": "search-term",
+      "title": "MikroTik connection states new established related invalid"
+    }
+  ],
+  "objectives": [
+    "Diferenciar los estados de conexion: new, established, related, invalid",
+    "Identificar el orden de procesamiento en el flujo de paquetes de RouterOS",
+    "Comprender el impacto de fasttrack en el flujo",
+    "Relacionar cada cadena de firewall (prerouting, forward, postrouting, input, output) con su punto de evaluacion"
+  ],
+  "validation": {
+    "type": "quiz"
+  },
+  "topics": [
+    "mtcna",
+    "connection",
+    "states",
+    "packet",
+    "flow"
+  ]
+}

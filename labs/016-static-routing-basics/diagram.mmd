@@ -1,0 +1,7 @@
+graph LR
+    A[LAN1 192.168.16.0/24] --> B[r1]
+    B --> C[10.16.0.0/30]
+    C --> D[r2]
+    D --> E[LAN2 172.16.0.0/24]
+    B -- ruta estatica --> E
+    D -- ruta estatica --> A

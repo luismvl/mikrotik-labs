@@ -1,0 +1,9 @@
+{
+  "files": [],
+  "references": [
+    { "path": "packages/lab-schema" },
+    { "path": "packages/lab-runner" },
+    { "path": "apps/backend" },
+    { "path": "apps/frontend" }
+  ]
+}

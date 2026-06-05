@@ -1,0 +1,6 @@
+graph LR
+    A[Atacante WAN] -- X --> B[r1 MikroTik]
+    A -- drop --> B
+    C[Admin LAN] -- SSH/WinBox --> B
+    C -- accept --> B
+    B -- established/related --> B

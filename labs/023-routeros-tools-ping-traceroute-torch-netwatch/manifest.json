@@ -1,0 +1,61 @@
+{
+  "id": "023-routeros-tools-ping-traceroute-torch-netwatch",
+  "track": "MTCNA",
+  "title": "Herramientas de RouterOS: ping, traceroute, torch, netwatch",
+  "description": "Utiliza las herramientas de diagnostico de RouterOS para analizar conectividad, rutas, trafico y monitoreo de hosts. Estas herramientas son fundamentales para el troubleshooting diario.",
+  "mode": "containerlab",
+  "difficulty": "medium",
+  "estimatedMinutes": 45,
+  "routers": [
+    {
+      "name": "r1",
+      "winboxPort": 18001,
+      "sshPort": 12001,
+      "webfigPort": 8081,
+      "username": "admin",
+      "password": "admin"
+    },
+    {
+      "name": "r2",
+      "winboxPort": 18002,
+      "sshPort": 12002,
+      "webfigPort": 8082,
+      "username": "admin",
+      "password": "admin"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official-docs",
+      "title": "DHCP",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/24805500/DHCP"
+    },
+    {
+      "type": "official-docs",
+      "title": "NAT",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/3211299/NAT"
+    },
+    {
+      "type": "search-term",
+      "title": "MikroTik torch netwatch traceroute ping tools tutorial"
+    }
+  ],
+  "objectives": [
+    "Usar ping para verificar conectividad basica entre routers",
+    "Usar traceroute para identificar la ruta entre dos puntos",
+    "Usar torch para analizar trafico en tiempo real en una interfaz",
+    "Configurar netwatch para monitorear un host y ejecutar acciones automaticas"
+  ],
+  "validation": {
+    "type": "automatic"
+  },
+  "topics": [
+    "mtcna",
+    "routeros",
+    "tools",
+    "ping",
+    "traceroute",
+    "torch",
+    "netwatch"
+  ]
+}

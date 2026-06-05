@@ -1,0 +1,40 @@
+{
+  "id": "018-basic-tunnel-concepts",
+  "track": "MTCNA",
+  "title": "Conceptos basicos de tuneles",
+  "description": "Comprende los tipos de tuneles mas comunes en RouterOS (IPIP, EoIP, GRE) y sus casos de uso basicos.",
+  "mode": "quiz",
+  "difficulty": "medium",
+  "estimatedMinutes": 45,
+  "resources": [
+    {
+      "type": "official-docs",
+      "title": "PPP",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/328072/PPP"
+    },
+    {
+      "type": "official-docs",
+      "title": "Packet Flow",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/328227/Packet+Flow+in+RouterOS"
+    },
+    {
+      "type": "search-term",
+      "title": "MikroTik IPIP EoIP GRE tunnel differences"
+    }
+  ],
+  "objectives": [
+    "Diferenciar los tuneles IPIP, EoIP y GRE en RouterOS",
+    "Identificar el proposito de un tunnel en escenarios de VPN o interconexion",
+    "Comprender la encapsulacion de paquetes dentro de tuneles IP",
+    "Reconocer requisitos basicos de configuracion (direcciones IP locales y remotas)"
+  ],
+  "validation": {
+    "type": "quiz"
+  },
+  "topics": [
+    "mtcna",
+    "basic",
+    "tunnel",
+    "concepts"
+  ]
+}

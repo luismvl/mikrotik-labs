@@ -1,0 +1,6 @@
+graph LR
+    A[Laptop/Telefono] -->|Wi-Fi| B[r1 MikroTik]
+    B -->|SSID: MTCNA-Lab-020| A
+    B -->|DHCP| C[192.168.88.0/24]
+    C --> A
+    D[WinBox/WebFig] --> B

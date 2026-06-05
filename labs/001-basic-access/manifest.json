@@ -1,0 +1,49 @@
+{
+  "id": "001-basic-access",
+  "track": "MTCNA",
+  "title": "Acceso basico a RouterOS",
+  "description": "Practica los metodos de acceso inicial a un router MikroTik: WinBox, SSH, WebFig y la consola serial.",
+  "mode": "containerlab",
+  "difficulty": "easy",
+  "estimatedMinutes": 25,
+  "routers": [
+    {
+      "name": "r1",
+      "winboxPort": 18001,
+      "sshPort": 12001,
+      "webfigPort": 8081,
+      "username": "admin",
+      "password": "admin"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official-docs",
+      "title": "Servicios",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/103841820/Services"
+    },
+    {
+      "type": "official-docs",
+      "title": "Routes",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/328084/Routes"
+    },
+    {
+      "type": "search-term",
+      "title": "MikroTik WinBox first connection"
+    }
+  ],
+  "objectives": [
+    "Conectar al router mediante WinBox usando la direccion MAC",
+    "Conectar por SSH y cambiar la contrasena del usuario admin",
+    "Acceder a WebFig desde el navegador",
+    "Verificar que los servicios SSH, Telnet, WinBox y Web estan habilitados"
+  ],
+  "validation": {
+    "type": "automatic"
+  },
+  "topics": [
+    "mtcna",
+    "basic",
+    "access"
+  ]
+}

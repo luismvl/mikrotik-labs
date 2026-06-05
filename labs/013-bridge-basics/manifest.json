@@ -1,0 +1,49 @@
+{
+  "id": "013-bridge-basics",
+  "track": "MTCNA",
+  "title": "Bridge: conceptos basicos",
+  "description": "Configura un bridge en RouterOS, agrega puertos Ethernet y verifica el aprendizaje de direcciones MAC entre dispositivos conectados.",
+  "mode": "containerlab",
+  "difficulty": "medium",
+  "estimatedMinutes": 45,
+  "routers": [
+    {
+      "name": "r1",
+      "winboxPort": 18001,
+      "sshPort": 12001,
+      "webfigPort": 8081,
+      "username": "admin",
+      "password": "admin"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official-docs",
+      "title": "Bridging and Switching",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/328068/Bridging+and+Switching"
+    },
+    {
+      "type": "official-docs",
+      "title": "Packet Flow",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/328227/Packet+Flow+in+RouterOS"
+    },
+    {
+      "type": "search-term",
+      "title": "MikroTik bridge add ports MAC learning"
+    }
+  ],
+  "objectives": [
+    "Crear un bridge y agregarle puertos Ethernet",
+    "Asignar una direccion IP al bridge",
+    "Verificar la tabla de hosts del bridge (/interface bridge host print)",
+    "Confirmar conectividad entre dispositivos a traves del bridge"
+  ],
+  "validation": {
+    "type": "automatic"
+  },
+  "topics": [
+    "mtcna",
+    "bridge",
+    "basics"
+  ]
+}

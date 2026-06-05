@@ -1,0 +1,5 @@
+graph LR
+    A[r1 MikroTik] -- ether2 --> B[client Linux]
+    A -- ARP estatico --> B
+    A -- MNDP --> B
+    A -- DHCP lease estatico --> B

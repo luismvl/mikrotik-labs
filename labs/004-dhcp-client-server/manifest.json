@@ -1,0 +1,51 @@
+{
+  "id": "004-dhcp-client-server",
+  "track": "MTCNA",
+  "title": "DHCP cliente y servidor",
+  "description": "Configura un cliente DHCP en la interfaz WAN y un servidor DHCP en la interfaz LAN para asignar IPs automaticamente.",
+  "mode": "containerlab",
+  "difficulty": "easy",
+  "estimatedMinutes": 35,
+  "routers": [
+    {
+      "name": "r1",
+      "winboxPort": 18001,
+      "sshPort": 12001,
+      "webfigPort": 8081,
+      "username": "admin",
+      "password": "admin"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official-docs",
+      "title": "DHCP",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/24805500/DHCP"
+    },
+    {
+      "type": "official-docs",
+      "title": "Servicios",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/103841820/Services"
+    },
+    {
+      "type": "search-term",
+      "title": "MikroTik DHCP server setup step by step"
+    }
+  ],
+  "objectives": [
+    "Configurar un cliente DHCP en la interfaz WAN (ether1)",
+    "Crear un pool de direcciones para la red LAN",
+    "Configurar un servidor DHCP en la interfaz LAN (ether2)",
+    "Verificar que el cliente Linux recibe IP por DHCP",
+    "Revisar leases activas con /ip dhcp-server lease print"
+  ],
+  "validation": {
+    "type": "automatic"
+  },
+  "topics": [
+    "mtcna",
+    "dhcp",
+    "client",
+    "server"
+  ]
+}

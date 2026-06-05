@@ -1,0 +1,74 @@
+{
+  "id": "139-final-mtcre-simulation-lab",
+  "title": "Final MTCRE simulation lab",
+  "track": "MTCRE",
+  "mode": "containerlab",
+  "difficulty": "exam",
+  "estimatedMinutes": 120,
+  "topics": [
+    "routing",
+    "ospf",
+    "policy-routing",
+    "final"
+  ],
+  "resources": [
+    {
+      "type": "official-docs",
+      "title": "RouterOS Routes",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/328084/Routes"
+    },
+    {
+      "type": "official-docs",
+      "title": "RouterOS Policy Routing",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/59965508/Policy+Routing"
+    },
+    {
+      "type": "official-docs",
+      "title": "RouterOS OSPF",
+      "url": "https://help.mikrotik.com/docs/spaces/ROS/pages/331612216/routing+ospf"
+    },
+    {
+      "type": "search-term",
+      "title": "MikroTik RouterOS 7 Final MTCRE simulation lab"
+    },
+    {
+      "type": "search-term",
+      "title": "MTCRE Final MTCRE simulation lab lab"
+    }
+  ],
+  "routers": [
+    {
+      "name": "r1",
+      "winboxPort": 18001,
+      "sshPort": 12001,
+      "webfigPort": 8081,
+      "username": "admin",
+      "password": "admin"
+    },
+    {
+      "name": "r2",
+      "winboxPort": 18002,
+      "sshPort": 12002,
+      "webfigPort": 8082,
+      "username": "admin",
+      "password": "admin"
+    },
+    {
+      "name": "r3",
+      "winboxPort": 18003,
+      "sshPort": 12003,
+      "webfigPort": 8083,
+      "username": "admin",
+      "password": "admin"
+    }
+  ],
+  "objectives": [
+    "Analizar el escenario de Final MTCRE simulation lab sin depender de una receta paso a paso",
+    "Disenar la tabla de rutas o el dominio dinamico requerido",
+    "Aplicar configuracion RouterOS consistente entre routers",
+    "Validar conectividad, redundancia y seleccion de ruta"
+  ],
+  "validation": {
+    "type": "automatic"
+  }
+}
